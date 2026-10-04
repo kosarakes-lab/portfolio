@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KK</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/zrw7btb.css">
+</head>
+
+<body class="theme-dark">
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <!-- Left -->
+        <div class="nav-left">
+            <a href="index.html" id="name"></a>
+        </div>
+
+        <!-- Middle -->
+        <div class="nav-middle">
+            <svg id="themeToggle" width="30" height="30" viewBox="0 0 76 77" xmlns="http://www.w3.org/2000/svg"
+                cursor="pointer">
+                <path
+                    d="M37.5347 0L40.5331 25.3628L54.2392 3.8127L45.9362 27.9648L67.6352 14.4956L49.6752 32.6534L75.0694 29.9329L51.0097 38.5L75.0694 47.0671L49.6752 44.3466L67.6352 62.5044L45.9362 49.0352L54.2392 73.1873L40.5331 51.6372L37.5347 77L34.5362 51.6372L20.8301 73.1873L29.1331 49.0352L7.43416 62.5044L25.3941 44.3466L-5.72205e-05 47.0671L24.0597 38.5L-5.72205e-05 29.9329L25.3941 32.6534L7.43416 14.4956L29.1331 27.9648L20.8301 3.8127L34.5362 25.3628L37.5347 0Z"
+                    fill="var(--accent)" />
+            </svg>
+        </div>
+
+
+        <!-- Right -->
+        <div class="nav-right">
+            <a href="about.html" id="details">about</a>
+        </div>
+    </nav>
+
+    <!-- STATIC TEXT -->
+    <section class="intro">
+        <div class="static-text" id="static-text">
+        </div>
+    </section>
+
+    <!-- SCROLL CONTENT -->
+    <section class="projects">
+        <h1 id="selected-projects"></h1>
+        <div class="projects-grid">
+            <a href="project1.html" class="project-card-link">
+                <div class="project-card">
+                    <img src="images/2-musei.png" alt="Project">
+
+                    <div class="project-info">
+                        <div class="project-year">{ 2025 }</div>
+                        <div class="project-title" id="project-one"></div>
+                        <div class="project-description" id="project-one-info"></div>
+                        <div class="project-description" id="project-one-collab"></div>
+                    </div>
+                </div>
+            </a>
+            
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-left" id="profession"></div>
+
+        <div class="footer-right language-switch">
+            <button data-lang="en" onclick="switchLanguage('en')">EN</button>
+            <span>|</span>
+            <button data-lang="it" onclick="switchLanguage('it')">IT</button>
+            <span>|</span>
+            <button data-lang="bg" onclick="switchLanguage('bg')">BG</button>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

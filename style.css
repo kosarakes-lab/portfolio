@@ -1,0 +1,460 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* THEMES */
+.theme-light {
+    background: #fffcf5;
+    color: #211F1F;
+    --accent: #ffa600;
+    --bg: #fffcf5;
+    --color: #211F1F;
+}
+
+.theme-dark {
+    background: #211F1F;
+    color: #fffcf5;
+    --accent: #FFE77A;
+    --bg: #211F1F;
+    --color: #fffcf5;
+}
+
+#themeToggle path {
+    fill: var(--accent);
+    transition: fill 0.3s ease;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* left and right stay at edges */
+    padding: 0 5%;
+    box-sizing: border-box;
+    background: inherit;
+    font-size: 16px;
+    z-index: 20;
+}
+
+/* LEFT BUTTON */
+.nav-left a {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* RIGHT BUTTON / LINK */
+.nav-right a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* MIDDLE IMAGE */
+.nav-middle {
+    position: absolute;
+    /* take out of normal flow */
+    left: 50%;
+    /* center of viewport */
+    top: 50%;
+    /* vertically center inside navbar */
+    transform: translate(-50%, -50%);
+    /* perfectly center */
+}
+
+.nav-middle img {
+    width: 30px;
+    height: 30px;
+    fill: var(--accent);
+    cursor: pointer;
+}
+
+
+/* STATIC TEXT */
+.intro {
+    height: 100vh;
+    /* full viewport height */
+    padding: 0 5%;
+    /* left/right margins */
+    display: flex;
+    align-items: flex-end;
+    /* pushes content to the bottom */
+}
+
+.static-text {
+    font-size: 45px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+    max-width: 80%;
+    margin-bottom: 100px;
+    /* distance from bottom of viewport */
+}
+
+/* PROJECTS SECTION */
+.projects {
+    position: relative;
+    margin-top: 20vh;
+    margin: 60px auto 0;
+    width: 90%;
+    padding: 0 60px 100px;
+    z-index: 1;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* CARD */
+.project-card {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+/* IMAGE */
+.project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    will-change: transform, opacity;
+    transition:
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* TEXT OVERLAY */
+.project-info {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    text-align: center;
+    color: var(--accent);
+
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+/* YEAR */
+.project-year {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* TITLE */
+.project-title {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+
+.project-collab {
+    font-size: 16px;
+    color: var(--accent);
+    margin: -20px 0 -10px 0;
+    text-align: center;
+}
+
+/* DESCRIPTION */
+.project-description {
+    font-size: 20px;
+    /* smaller */
+    font-weight: 400;
+    max-width: 70%;
+    line-height: 1.4;
+    opacity: 0.85;
+}
+
+.project-description-pic {
+    font-size: 16px;
+    margin: -10px 0 5px 0;
+}
+
+/* Hover states */
+.project-card:hover .project-info {
+    opacity: 1;
+}
+
+.project-card:hover img {
+    opacity: 0.1;
+    transform: scale(1.15);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* full width of the viewport */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* left and right content */
+    padding: 0 5%;
+    /* 5% margins inside */
+    box-sizing: border-box;
+    /* ensures padding doesn’t break width */
+    background: inherit;
+    /* same background as body */
+    font-size: 16px;
+    z-index: 2;
+    /* above content */
+}
+
+
+.language-switch button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    color: inherit;
+    font-weight: 400;
+}
+
+.language-switch button.active {
+    font-weight: 700;
+    /* bold selected */
+}
+
+.language-switch span {
+    margin: 0 6px;
+    opacity: 0.6;
+}
+
+
+.about-wrapper {
+    min-height: 100vh;
+    width: 90vw;
+    padding: 5%;
+    box-sizing: border-box;
+    transform: rotate(-1deg);
+}
+
+.cv-content {
+    color: var(--accent);
+    padding: 40px;
+    border-radius: 2px;
+}
+
+.cv-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.cv-left h2 {
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+.cv-section {
+    margin-bottom: 40px;
+}
+
+.cv-section h3 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.cv-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cv-section li {
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.cv-right h3 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 25px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list a {
+    text-decoration: none;
+    color: var(--accent);
+    /* matches your theme */
+    transition: color 0.2s ease;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.contact-list a:hover {
+    color: #f671ff;
+    /* accent color on hover */
+}
+
+.italic {
+    font-style: italic;
+    font-weight: 200;
+}
+
+
+/* SLIDER */
+.slider-container {
+    position: relative;
+    width: 90%;
+    height: 66vh;
+    overflow: hidden;
+    margin: 60px auto 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(243, 82, 255, 0.5);
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.6s ease;
+    height: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Top-left number */
+.slide-number {
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--accent);
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg);
+    color: var(--color);
+    border: none;
+    font-size: 30px;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+    color: #f671ff;
+}
+
+/* Project details */
+.project-details {
+    width: 80vw;
+    margin: 40px auto;
+    padding: 20px 30px 10vh 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    gap: 15px;
+}
+
+.project-meta-data {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    /* vertically centers all items */
+    justify-content: space-between;
+    padding: 0 5%;
+    box-sizing: border-box;
+    color: var(--accent);
+    background: inherit;
+    font-size: 20px;
+}
+
+.project-meta-data-left,
+.project-meta-data-middle,
+.project-meta-data-right {
+    display: flex;
+    align-items: center;
+}
+
+/* MIDDLE item truly centered in page */
+.project-meta-data-middle {
+    position: absolute;
+    left: 50%;
+    /* middle of the page */
+    transform: translateX(-50%);
+    /* center horizontally */
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KK_1/25</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/zrw7btb.css">
+</head>
+
+<body class="theme-dark">
+    <nav class="navbar">
+        <!-- Left -->
+        <div class="nav-left">
+            <a href="index.html" id="name"></a>
+        </div>
+
+        <!-- Middle -->
+        <div class="nav-middle">
+            <svg id="themeToggle" width="30" height="30" viewBox="0 0 76 77" xmlns="http://www.w3.org/2000/svg"
+                cursor="pointer">
+                <path
+                    d="M37.5347 0L40.5331 25.3628L54.2392 3.8127L45.9362 27.9648L67.6352 14.4956L49.6752 32.6534L75.0694 29.9329L51.0097 38.5L75.0694 47.0671L49.6752 44.3466L67.6352 62.5044L45.9362 49.0352L54.2392 73.1873L40.5331 51.6372L37.5347 77L34.5362 51.6372L20.8301 73.1873L29.1331 49.0352L7.43416 62.5044L25.3941 44.3466L-5.72205e-05 47.0671L24.0597 38.5L-5.72205e-05 29.9329L25.3941 32.6534L7.43416 14.4956L29.1331 27.9648L20.8301 3.8127L34.5362 25.3628L37.5347 0Z"
+                    fill="var(--accent)" />
+            </svg>
+        </div>
+
+
+        <!-- Right -->
+        <div class="nav-right">
+            <a href="about.html" id="details">about</a>
+        </div>
+    </nav>
+    <!-- SLIDER -->
+    <section class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="images/2-musei.png" alt="Slide 1">
+                <div class="slide-number">[ 1 ]</div>
+            </div>
+            <div class="slide">
+                <img src="images/3-proteste.png" alt="Slide 2">
+                <div class="slide-number">[ 2 ]</div>
+            </div>
+            <!-- add more slides here -->
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </section>
+    <div class="project-meta-data">
+        <div class="project-meta-data-left">
+            <a>University Project</a>
+        </div>
+
+        <!-- Middle -->
+        <div class="project-meta-data-middle">
+            <a>{ 2025 }</a>
+        </div>
+
+        <div class="project-meta-data-right">
+            <a>Design Academy Eindhoven</a>
+        </div>
+    </div>
+
+    <!-- PROJECT DETAILS -->
+    <section class="project-details">
+        <h1 class="project-title" id="project-one"></h1>
+        <p class="project-collab" id="project-one-collab"></p>
+        <p class="project-description">The Social Museum explores how people interact with artworks in photos shared on
+            Instagram, uncovering the performative side of museum visits. Are visitors truly engaging with the art, or
+            are they performing in front of the camera to have a curated presence for social media? What defines
+            engagement in this context? By examining thousands of Instagram images from the six largest contemporary art
+            museums of 2024—both those posted by the institutions and those shared by visitors—we identified patterns in
+            how individuals behave in a gallery setting. Through a curated selection of images featuring solitary
+            visitors in the museum spaces, we categorized and analyzed the ways people position themselves in relation
+            to artworks. This research-led installation transforms our findings into an interactive space where you can
+            explore these patterns firsthand. As you move, reflect on your choices—are you drawn to engagement,
+            performance, or something in between? The Social Museum invites you to question how social media shapes our
+            collective experience of contemporary art.</p>
+        <p class="project-description-pic">[1] Picture of this and that.</p>
+        <p class="project-description-pic">[2] Picture of this and that.</p>
+        <p class="project-description-pic">[3] Picture of this and that.</p>
+        <p class="project-description-pic">[4] Picture of this and that.</p>
+        <ul class="contact-list">
+            <li><a href="https://www.instagram.com/kosara_keskinova/">Link to the project!</a></li>
+        </ul>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-left" id="profession"></div>
+
+        <div class="footer-right language-switch">
+            <button data-lang="en" onclick="switchLanguage('en')">EN</button>
+            <span>|</span>
+            <button data-lang="it" onclick="switchLanguage('it')">IT</button>
+            <span>|</span>
+            <button data-lang="bg" onclick="switchLanguage('bg')">BG</button>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

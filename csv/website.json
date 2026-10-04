@@ -1,0 +1,207 @@
+[
+  {
+    "key": "kosara",
+    "en": "Designer and Data Nerd",
+    "bg": "Дизайнер и Любител на Данни",
+    "it": "Designer e Data Nerd"
+  },
+  {
+    "key": "profession",
+    "en": "Designer and Data Nerd",
+    "bg": "Дизайнер и Любител на Данни",
+    "it": "Designer e Data Nerd"
+  },
+  {
+    "key": "details",
+    "en": "More Details",
+    "bg": "Повече Детайли",
+    "it": "Più Dettagli"
+  },
+  {
+    "key": "name",
+    "en": "Kosara Keskinova",
+    "bg": "Косара Кескинова",
+    "it": "Kosara Keskinova"
+  },
+  {
+    "key": "selected-projects",
+    "en": "Selected Projects",
+    "bg": "Избрани Проекти",
+    "it": "Progetti Selezionati"
+  },
+  {
+    "key": "footer-languages",
+    "en": "EN",
+    "bg": "BG",
+    "it": "IT"
+  },
+  {
+    "key": "static-text",
+    "en": "Interdisciplinary designer who works with large datasets, investigations, stories, and any meaningful information, often exploring social and political topics. My work aims to clarify the unclear, inspire empathy, and create real impact where and when it matters.",
+    "bg": "Дизайнер с интердисциплинарен подход, работещ с данни, разследвания, истории и всяка информация със значение, често на социална и политическа тематика. Стремя се да изяснявам неясното, да вдъхвам емпатия и да оставям отпечатък там и когато е нужно.",
+    "it": "Designer interdisciplinare che lavora con dataset complessi, indagini, storie e qualsiasi informazione con significato, esplorando spesso realtà sociali e politiche. Il mio lavoro si propone di chiarire ciò che è oscuro, suscitare empatia e generare un impatto dove e quando conta."
+  },
+  {
+    "key": "project-one",
+    "en": "The Social Museum",
+    "bg": "Социалният музей",
+    "it": "Il Museo Sociale"
+  },
+  {
+    "key": "project-one-info",
+    "en": "The Social Museum explores how people interact with artworks in photos shared on Instagram, uncovering the performative side of museum visits.",
+    "bg": "Проектът изследва как хората взаимодействат с произведения на изкуството в снимки, споделени в Instagram, разкривайки перформативната страна на посещенията в музея.",
+    "it": "Il progetto esplora il modo in cui le persone interagiscono con le opere d'arte nelle foto condivise su Instagram, svelando il lato performativo delle visite ai musei."
+  },
+  {
+    "key": "project-one-collab",
+    "en": "collaboration with Diana Yukari",
+    "bg": "в колаборация с Диана Юкари",
+    "it": "collaborazione con Diana Yukari"
+  },
+
+  {
+    "key": "edu",
+    "en": "Education",
+    "bg": "Образование",
+    "it": "Educazione"
+  },
+  {
+    "key": "edu-1",
+    "en": "2018–2022 | BA Product and Graphic Design",
+    "bg": "2018–2022 | Бакалавър Продуктов и Графичен Дизайн",
+    "it": "2018–2022 | BA Design del prodotto e grafica"
+  },
+  {
+    "key": "uni-1",
+    "en": "Free University of Bozen-Bolzano, Italy",
+    "bg": "Свободен университет Болцано, Италия",
+    "it": "Libera università di Bolzano, Italia"
+  },
+  {
+    "key": "edu-2",
+    "en": "2024-Present  | MA Information Design",
+    "bg": "2024-Настояще  | Магистър Информационен Дизайн",
+    "it": "2024-Presente  | MA Information Design"
+  },
+  {
+    "key": "uni-2",
+    "en": "Design Academy Eindhoven, Netherlands",
+    "bg": "Академия по Дизайн Айндховен, Нидерландия",
+    "it": "Design Academy Eindhoven, Paesi Bassi"
+  },
+  {
+    "key": "work",
+    "en": "Working experience",
+    "bg": "Трудов опит",
+    "it": "Esperienza lavorativa"
+  },
+  {
+    "key": "work-1",
+    "en": "2023–2024 | Designer, Sheldon Studio, Italy",
+    "bg": "2023–2024 | Дизайнер, Шелдън Студио, Италия",
+    "it": "2023–2024 | Designer, Sheldon Studio, Italia"
+  },
+  {
+    "key": "work-2",
+    "en": "2022–Present | Designer, Data for Good, Bulgaria",
+    "bg": "2022–Настояще | Дизайнер, Данни за Добро, България",
+    "it": "2022–Presente | Designer, Data for Good, Bulgaria"
+  },
+  {
+    "key": "work-3",
+    "en": "2024–Present | Designer, Corriere della Sera, Italy",
+    "bg": "2024–Настояще | Дизайнер, Corriere della Sera, Италия",
+    "it": "2024–Presente | Designer, Corriere della Sera, Italia"
+  },
+  {
+    "key": "lang",
+    "en": "Spoken languages",
+    "bg": "Говорими езици",
+    "it": "Lingue parlate"
+  },
+  {
+    "key": "lang-1",
+    "en": "English, Italian, Bulgarian, German",
+    "bg": "Английски, Италиански, Български, Немски",
+    "it": "Inglese, Italiano, Bulgaro, Tedesco"
+  },
+  {
+    "key": "bio",
+    "en": "Short biography",
+    "bg": "Кратка биография",
+    "it": "Breve biografia"
+  },
+  {
+    "key": "kosara-bio",
+    "en": "Born in post-Soviet, democratic Bulgaria, I graduated semi-art high school in Sofia, then spent my bachelor years in the northernmost corner of Italy, before landing in the Netherlands for my master's degree. It was somewhere along the way that I became an information designer! In my free time, I'm indulging in my many hobbies (such as ceramics, sewing, wandering in nature and many others) or I spend time with my loved ones and I'm always looking for sunny experiences.",
+    "bg": "Родена в постсъветска, демократична майка България завърших гимназия в София, след което прекарах бакалавърските си години в най-северния ъгъл на Италия, след което кацнах в Холандия за магистърската си степен. Някъде в тези години започнах да се занимавам с информационен дизайн! В свободното ми време се отдавам на многото ми хобита (между които керамика, шиене, разходки в природата и много други) или прекарвам време с любимите ми хора като винаги търся слънчеви преживявания.",
+    "it": "Nata nella Bulgaria democratica e post-sovietica, ho fatto liceo semi-artistico a Sofia, poi ho trascorso gli anni della trienalle in Nord Italia, prima di approdare nei Paesi Bassi per il master. Da qualche parte lungo la strada sono diventata una information designer. Nel mio tempo libero, mi dedico ai miei numerosi hobby (tra cui la ceramica, cucire, passeggiare nella natura e tanti altri), oppure passo il tempo con i miei cari e sono sempre alla ricerca di esperienze soleggiate."
+  },
+  {
+    "key": "exh",
+    "en": "‍Exhibitions & Workshops",
+    "bg": "‍Изложби & работилници",
+    "it": "‍Mostre & Workshop"
+  },
+  {
+    "key": "exh-1",
+    "en": "‍Neologia GRAPHIC DAYS 2023 | Exhibition",
+    "bg": "‍Neologia GRAPHIC DAYS 2023 | Изложба",
+    "it": "‍Neologia GRAPHIC DAYS 2023 | Mostra"
+  },
+  {
+    "key": "exh-2",
+    "en": "‍Neologia GRAPHIC DAYS 2024 | Exhibition",
+    "bg": "‍Neologia GRAPHIC DAYS 2024 | Изложба",
+    "it": "‍Neologia GRAPHIC DAYS 2024 | Mostra"
+  },
+  {
+    "key": "exh-3",
+    "en": "‍BAM Festival Milan 2024 | Exhibition",
+    "bg": "BAM Фестивал Милано 2024 | Изложба",
+    "it": "‍BAM Festival Milano 2024 | Mostra"
+  },
+  {
+    "key": "exh-4",
+    "en": "‍Fight for Kindness 2024 | Exhibition",
+    "bg": "Fight for Kindness 2024 | Изложба",
+    "it": "‍Fight for Kindness 2024 | Mostra"
+  },
+  {
+    "key": "exh-5",
+    "en": "‍Dear Sofia 2025 | Workshop",
+    "bg": "Скъпа София | Работилница",
+    "it": "‍Dear Sofia 2025 | Workshop"
+  },
+  {
+    "key": "award",
+    "en": "‍Awards",
+    "bg": "Награди",
+    "it": "‍Premi"
+  },
+  {
+    "key": "award-1",
+    "en": "‍European Design Award finalist 2023",
+    "bg": "European Design Award finalist 2023",
+    "it": "‍European Design Award finalist 2023"
+  },
+  {
+    "key": "award-2",
+    "en": "‍European Design Award Bronze 2025 | Sheldon Studio",
+    "bg": "European Design Award Bronze 2025 | Sheldon Studio",
+    "it": "‍European Design Award Bronze 2025 | Sheldon Studio"
+  },
+  {
+    "key": "contact",
+    "en": "‍Contacts",
+    "bg": "Контакти",
+    "it": "‍Contatti"
+  },
+  {
+    "key": "contact-1",
+    "en": "‍Always happy to chit-chat!",
+    "bg": "Винаги щастлива да поговорим!",
+    "it": "‍Sempre felice di chiacchierare!"
+  }
+]
