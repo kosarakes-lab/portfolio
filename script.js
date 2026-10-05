@@ -1,12 +1,15 @@
 const toggleBtn = document.getElementById("themeToggle");
-const body = document.body; // declare body once
+const body = document.body; 
 
 body.classList.add("theme-dark");
 
-toggleBtn.addEventListener("click", () => {
-  body.classList.toggle("theme-dark");
-  body.classList.toggle("theme-light");
-});
+// Protezione per evitare errori se l'elemento viene letto prima del rendering
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("theme-dark");
+    body.classList.toggle("theme-light");
+  });
+}
 
 let translations = [];
 let currentLang = "en";
@@ -17,7 +20,7 @@ fetch("csv/website.json")
   .then(data => {
     translations = data;
     applyLanguage(currentLang);
-    updateActiveLanguage(); // set default active button
+    updateActiveLanguage(); 
   })
   .catch(err => console.error("Translation load error:", err));
 
