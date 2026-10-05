@@ -14,17 +14,17 @@ body {
 /* THEMES */
 .theme-light {
     background: #fffcf5;
-    color: #211F1F;
+    color: #000;
     --accent: #ffa600;
     --bg: #fffcf5;
-    --color: #211F1F;
+    --color: #000;
 }
 
 .theme-dark {
-    background: #211F1F;
+    background: #000;
     color: #fffcf5;
     --accent: #FFE77A;
-    --bg: #211F1F;
+    --bg: #000;
     --color: #fffcf5;
 }
 
