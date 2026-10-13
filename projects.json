@@ -1,0 +1,143 @@
+[
+    {
+        "id": "project-01",
+        "title": "News Factories",
+        "client": "Design Academy Eindhoven",
+        "category": "MA thesis project",
+        "description": "Have you ever encountered the exact same news story across multiple websites, sometimes just seconds apart? News Factories investigates the phenomenon of “replication” of news within the Bulgarian online media landscape, exploring what the repetition and circulation of news can reveal about the power structures shaping digital media.",
+        "cover": "images/project-01.jpg",
+        "alt": "Data visualisation project overview",
+        "media": [
+            {
+                "type": "image",
+                "src": "images/project-01-01.jpg"
+            },
+            {
+                "type": "video",
+                "src": "videos/screen1.mp4",
+                "poster": "images/project-01-02-poster.jpg",
+                "description": "For this project, I built a custom scraper to collect and analyse hundreds of thousands of articles published throughout 2025 across more than 20 Bulgarian online media outlets. The analysis revealed that approximately 10% of the collected stories were identical or near-identical duplicates, many republished within minutes or even seconds. More than half of these stories were political, exposing patterns of synchronised publishing and raising questions about media pluralism, editorial independence, and the networks of influence behind seemingly independent outlets. To investigate how these stories travelled, I abstracted the data into an interactive timeline, transforming each story into a chain of nodes representing individual publications and republications across different media outlets. The visualisation revealed a complex system of irregularities: some stories remained in circulation longer or were republished by numerous outlets, while others disappeared almost immediately; some days were relatively quiet, while others were marked by intense activity. I became interested in these differences as a way of understanding the behaviour of the system itself, and in what the patterns of repetition, visibility, and circulation could reveal about the forces shaping the Bulgarian media landscape."
+            },
+            {
+                "type": "video",
+                "src": "videos/project-01-01.mp4",
+                "alt": "Details of the visual system",
+                "description": "Exploring these variations raised questions about the content behind the abstract visualisation: why did certain stories receive more visibility than others, and what role did their headlines, images, and political context play in their circulation? I wanted viewers to move between observing the overall patterns and investigating the individual articles. This led me to develop a dual-screen interface, combining the abstract timeline with a second projection displaying the original articles, images, headlines, and publishing outlets. Incorporating elements of gamification, the interface transforms the exploration of a complex dataset into an active, hands-on experience. Viewers can control the pace of discovery, follow the accumulation of stories, and investigate moments that capture their attention. This playful interaction contrasts with the seriousness of the subject, inviting curiosity while encouraging a more critical engagement with the narratives and mechanisms shaping the circulation of news."
+            },
+            {
+                "type": "image",
+                "src": "images/project-01-02.jpg",
+                "alt": "Details of the visual system"
+            }
+        ]
+    },
+    {
+        "id": "project-02",
+        "title": "Two centuries of war",
+        "client": "Corriere della Sera",
+        "category": "Data visualisation, Infographic",
+        "description": "This visualization shows how conflicts have involved countries throughout history, from 1816 to 1945. It displays the number of countries where wars occurred or in which they participated, as well as the number of conflicts per year. The graphic distinguishes between interstate wars, wars internal to individual states, and the involvement of countries in the internal conflicts of other states (extra-state conflicts). The data are drawn from the Historical Conflict Dataset.",
+        "cover": "images/project-02.jpg",
+        "alt": "Editorial design project",
+        "media": [
+            {
+                "type": "image",
+                "src": "images/project-02-01.jpg"
+            },
+            {
+                "type": "image",
+                "src": "images/project-02-02.jpg"
+            }
+        ]
+    },
+    {
+        "id": "project-03",
+        "title": "Net changes",
+        "client": "Design Academy Eindhoven",
+        "category": "Creative research",
+        "description": "What happens when sustainability becomes style? The re-emergence of the avoska net bag signals a shift from necessity to performance. Born out of material shortage and now sold in curated shops or worn by celebrities like Kim Kardashian, it’s no longer about “carrying what you find” but about being seen carrying. The bag’s porousness is symbolic: it shows everything, demands curation, and invites spectatorship. In an environment where eco-consciousness is often commodified, the net bag reveals the thin line between actual responsibility and aestheticized activism.",
+        "details": "A research-led investigation into how information can be organised and transformed into a clear and engaging visual experience.",
+        "cover": "images/project-03.jpg",
+        "alt": "Information design project",
+        "media": [
+            {
+                "type": "images",
+                "src": "images/project-03-00.jpg"
+            },
+            {
+                "type": "video",
+                "src": "videos/project-03-01.mp4"
+            },
+            {
+                "type": "image",
+                "src": "images/project-03-01.jpg"
+            }
+        ]
+    },
+    {
+        "id": "project-04",
+        "title": "Volcanic activity",
+        "client": "Corriere della Sera",
+        "category": "Data visualisation, Infographic",
+        "description": "The visualization displays eruptions over time for each of the 46 volcanoes that were still active in 2025. Each circle represents an eruption, with its start and end points marked on a timeline beginning in 1900. The size of the dots indicates the event's intensity according to the Volcanic Explosivity Index (VEI), while the color highlights whether the eruptions were long-lasting or brief. The elevation and geographic location of each volcano are also indicated.",
+        "details": "An experimental approach to visual communication, using creative systems to make abstract ideas more tangible.",
+        "cover": "images/project-04.jpg",
+        "alt": "Experimental design project",
+        "media": [
+            {
+                "type": "images",
+                "src": "images/project-04-01.jpg"
+            },
+            {
+                "type": "images",
+                "src": "images/project-04-02.jpg"
+            }
+        ]
+    },
+    {
+        "id": "project-05",
+        "title": "Social Museum",
+        "client": "Design Academy Eindhoven",
+        "category": "Interactive installation in collaboration with Diana Yukari, supervised by Studio Calibro",
+        "description": "The Social Museum is a research-led installation exploring how social media shapes the way we experience contemporary art. By analyzing thousands of Instagram images from six major contemporary art museums, the project examines the relationship between genuine engagement and performative behavior in gallery spaces.",
+        "details": "An exploration of the relationship between information, structure and meaning through visual storytelling.",
+        "cover": "images/project-05.jpg",
+        "alt": "Visual systems project",
+        "media": [
+            {
+                "type": "image",
+                "src": "images/project-05-01.JPG"
+            },
+            {
+                "type": "video",
+                "src": "videos/project-05.mp4",
+                "alt": "Details of the visual system",
+                "description": "Through an interactive exploration of visitor poses and their positioning in relation to artworks, the installation invites visitors to reflect on their own behavior and question where engagement ends and performance begins."
+            },
+            {
+                "type": "images",
+                "src": "images/project-05-02.jpg"
+            }
+        ]
+    },
+    {
+        "id": "project-06",
+        "title": "The asteroids around us",
+        "client": "Corriere della Sera",
+        "category": "Data visualisation, Infographic",
+        "description": "This visualization compares data on asteroids that have made close approaches to Earth with confirmed impact sites listed in the official Earth Impact Database. The analysis highlights the frequency and distance of the most recent close encounters, as well as the geological traces left by past impacts.",
+        "details": "Creative research bringing together people, data and culture through a considered visual language.",
+        "cover": "images/project-06.jpg",
+        "alt": "Creative research project",
+        "media": [
+            {
+                "type": "images",
+                "src": "images/project-06-01.jpg"
+            },
+            {
+                "type": "images",
+                "src": "images/project-06-02.jpg"
+            }
+        ]
+    }
+]
