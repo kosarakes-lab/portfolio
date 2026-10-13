@@ -1,80 +1,295 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KK</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/zrw7btb.css">
-</head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👀</text></svg>" />
 
-<body class="theme-dark">
+<body>
+    <!-- nav -->
+    <header class="navbar" id="navbar">
 
-    <!-- NAV -->
-    <nav class="navbar">
-        <!-- Left -->
         <div class="nav-left">
-            <a href="index.html" id="name"></a>
+            <a href="#works">works</a>
+            <a href="#about">about</a>
         </div>
 
-        <!-- Middle -->
-        <div class="nav-middle">
-            <svg id="themeToggle" width="30" height="30" viewBox="0 0 76 77" xmlns="http://www.w3.org/2000/svg"
-                cursor="pointer">
-                <path
-                    d="M37.5347 0L40.5331 25.3628L54.2392 3.8127L45.9362 27.9648L67.6352 14.4956L49.6752 32.6534L75.0694 29.9329L51.0097 38.5L75.0694 47.0671L49.6752 44.3466L67.6352 62.5044L45.9362 49.0352L54.2392 73.1873L40.5331 51.6372L37.5347 77L34.5362 51.6372L20.8301 73.1873L29.1331 49.0352L7.43416 62.5044L25.3941 44.3466L-5.72205e-05 47.0671L24.0597 38.5L-5.72205e-05 29.9329L25.3941 32.6534L7.43416 14.4956L29.1331 27.9648L20.8301 3.8127L34.5362 25.3628L37.5347 0Z"
-                    fill="var(--accent)" />
-            </svg>
-        </div>
+        <a href="#" class="nav-name" id="navName">
+            <b>Kosara Keskinova</b><br />
+            kosara.kes@gmail.com
+        </a>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light theme" type="button">
+            <span class="theme-icon" id="themeIcon">☾</span>
+        </button>
+
+    </header>
+
+    <!-- hero -->
+    <main>
+        <section class="hero">
+
+            <p class="hero-title">
+                information designer doing
+                <span class="typing-wrapper">
+                    <span class="changing-word" id="changingWord">
+                    </span>
+                    <span class="typing-cursor" aria-hidden="true">
+                    </span>
+                </span>
+            </p>
+        </section>
 
 
-        <!-- Right -->
-        <div class="nav-right">
-            <a href="about.html" id="details">about</a>
-        </div>
-    </nav>
+        <section class="works" id="works">
+            <div class="project-grid" id="projectGrid">
+                <!-- Project cards are generated from projects.json -->
+            </div>
+            <button class="load-more" id="loadMore" hidden>
+                see more
+            </button>
+        </section>
 
-    <!-- STATIC TEXT -->
-    <section class="intro">
-        <div class="static-text" id="static-text">
-        </div>
-    </section>
+        <!-- about -->
+        <section class="about" id="about">
+            <div class="about-hero">
+                <img src="images/about.jpg" alt="About me" class="about-image" />
+                <div class="about-overlay"></div>
+                <div class="about-typewriter">
+                    <span id="aboutText"></span>
+                </div>
+            </div>
 
-    <!-- SCROLL CONTENT -->
-    <!-- <section class="projects">
-        <h1 id="selected-projects"></h1>
-        <div class="projects-grid">
-            <a href="project1.html" class="project-card-link">
-                <div class="project-card">
-                    <img src="images/2-musei.png" alt="Project">
+            <section class="about-wrapper">
+                <div class="heading">
+                    <h2>about</h2>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Born in post-Soviet, democratic Bulgaria,
+                        I graduated from a semi-art high school in Sofia,
+                        then spent my bachelor years in the northernmost
+                        corner of Italy
+                        before landing in the Netherlands for my master's
+                        degree.
+                    </p>
+                    <p>
+                        Somewhere along the way, I started working with data
+                        through infographics, laying out research and turning
+                        plain information into visual stories.
+                        What started as an exploration out of curiousity eventually
+                        became my job which I absolutely love!
+                    </p>
+                </div>
+                <div class="cv-content">
+                    <div class="cv-grid">
 
-                    <div class="project-info">
-                        <div class="project-year">{ 2025 }</div>
-                        <div class="project-title" id="project-one"></div>
-                        <div class="project-description" id="project-one-info"></div>
-                        <div class="project-description" id="project-one-collab"></div>
+                        <!-- LEFT SIDE -->
+                        <div class="cv-left">
+
+                            <div class="cv-section">
+                                <h1>education</h1>
+
+                                <h2>Design Academy Eindhoven</h2>
+                                <h3>2024 — 2026 ☼ MA Information Design</h3>
+
+                                <h2>Free University of Bolzano</h2>
+                                <h3>2018 — 2022 ☼ BA Industrial Design</h3>
+                            </div>
+
+                            <div class="cv-section">
+                                <h1>experience</h1>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>Corriere della Sera</h2>
+                                    <h3>2024 — Present ☼ Data Visualisation</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/work/corriere-01.jpg" alt="">
+                                        <img src="images/work/corriere-02.jpg" alt="">
+                                        <img src="images/work/corriere-03.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>Data for Good (Bulgaria)</h2>
+                                    <h3>2023 — Present ☼ Data Visualisation</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/work/data-for-good-03.jpg" alt="">
+
+                                        <img src="images/work/data-for-good-01.jpg" alt="">
+                                        <img src="images/work/data-for-good-02.jpg" alt="">
+
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>Sheldon.Studio</h2>
+                                    <h3>2023 — 2024 ☼ Information design</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/work/sheldon-01.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- RIGHT SIDE -->
+                        <div class="cv-right">
+                            <div class="cv-section">
+                                <h1>achievements</h1>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>European Design Award</h2>
+                                    <h3>2025 ☼ Bronze Award ☼ Sheldon Studio</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/work/sheldon-01.jpg" alt="">
+                                        <img src="images/achievements/eda-2025.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>Dear Sofia</h2>
+                                    <h3>2024 ☼ Workshop</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/achievements/dear-sofia-01.jpg" alt="">
+                                        <img src="images/achievements/dear-sofia-02.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>BAM Festival</h2>
+                                    <h3>2024 ☼ Exhibition</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/achievements/bam-festival-01.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>Fight for Kindness</h2>
+                                    <h3>2024 ☼ Exhibition</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/achievements/kindness-01.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>Neologia | Graphic Days di Torino</h2>
+                                    <h3>2024 ☼ Exhibition</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/achievements/neologia-2024-01.jpg" alt="">
+                                        <img src="images/achievements/neologia-2024-02.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>Neologia | Graphic Days di Torino</h2>
+                                    <h3>2023 ☼ Exhibition</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/achievements/eda-2023-01.jpg" alt="">
+                                        <img src="images/achievements/eda-2023-03.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="cv-hover-item" tabindex="0">
+                                    <h2>European Design Award</h2>
+                                    <h3>2023 ☼ Finalist Award</h3>
+
+                                    <div class="cv-hover-preview" aria-hidden="true">
+                                        <img src="images/achievements/eda-2023-01.jpg" alt="">
+                                        <img src="images/achievements/eda-2023-02.jpg" alt="">
+                                        <img src="images/achievements/eda-2023-03.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </a>
-            
-        </div>
-    </section> -->
+                 <div class="place">
+                    <h2>Currently in Eindhoven ☼ Transfering to Sofia</h2>
+                </div>
+            </section>
+           
+               
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-left" id="profession"></div>
 
-        <div class="footer-right language-switch">
-            <button data-lang="en" onclick="switchLanguage('en')">EN</button>
-            <span>|</span>
-            <button data-lang="it" onclick="switchLanguage('it')">IT</button>
-            <span>|</span>
-            <button data-lang="bg" onclick="switchLanguage('bg')">BG</button>
-        </div>
-    </footer>
+        </section>
 
+
+
+        <!-- footer -->
+        <footer class="footer">
+            <h2>
+                Let’s work together!
+            </h2>
+            <div class="footer-links">
+                <a href="mailto:kosara.kes@gmail.com">kosara.kes@gmail.com</a>
+                <!-- <a href="https://www.linkedin.com/in/kosara-keskinova-a268a3147/">LinkedIn</a> -->
+                <a href="https://www.instagram.com/kosara_keskinova/">Instagram</a>
+            </div>
+
+            <div>
+                <p class="footer-note">© 2026 Kosara Keskinova</p>
+            </div>
+
+        </footer>
+    </main>
     <script src="script.js"></script>
 </body>
+
+
+
+<!-- PROJECT LIGHTBOX -->
+<div class="project-modal" id="projectModal" aria-hidden="true">
+
+    <!-- Fixed close button, outside the scrolling panel -->
+    <button class="modal-close" id="modalClose" type="button" aria-label="Close project">
+        <span aria-hidden="true">✕</span>
+    </button>
+
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+        <div class="modal-content">
+
+            <!-- Large opening image -->
+            <div class="modal-hero" id="modalHero"></div>
+
+            <!-- Title, client, category and project description -->
+            <div class="modal-intro">
+                <h2 id="modalTitle">Project title</h2>
+                <div id="modalHeadingMeta" class="modal-heading-meta"></div>
+                <p id="modalDescription" class="project-description"></p>
+            </div>
+
+            <!-- Remaining images and videos -->
+            <div class="modal-gallery" id="modalGallery"></div>
+
+        </div>
+
+        <footer class="modal-footer">
+            <button type="button" id="modalPrev" aria-label="Previous project">←</button>
+            <button type="button" id="modalNext" aria-label="Next project">→</button>
+        </footer>
+
+    </div>
+</div>
+
 
 </html>
