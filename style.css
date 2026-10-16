@@ -598,6 +598,7 @@ h2 {
         opacity 0.4s ease,
         transform 0.4s ease;
 }
+
 .project-info h3 {
     margin: 0 0 8px;
     color: var(--accent);
@@ -618,7 +619,7 @@ h2 {
     display: inline-block;
     margin-top: 18px;
     color: var(--accent);
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* Hover and keyboard focus */
@@ -659,6 +660,15 @@ h2 {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
 }
 
 /* MAIN PANEL */
@@ -818,7 +828,7 @@ video.project-media {
 
 .project-media-description {
     max-width: 760px;
-    margin: 60px  0;
+    margin: 60px 0;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.6;
@@ -875,7 +885,6 @@ video.project-media {
 .modal-footer button:hover {
 
     color: var(--accent)
-
 }
 
 
@@ -1317,7 +1326,6 @@ video.project-media {
 .cv-hover-item:focus-visible h3 {
 
     color: var(--accent)
-
 }
 
 
@@ -1426,194 +1434,95 @@ video.project-media {
 
 
 .footer-links a {
-
     transition: opacity 0.2s ease;
-
     font-weight: 600;
 
 }
 
-
-
 .footer-note {
-
-    font-size: 12px;
-
+    font-size: 14px;
     opacity: 0.5;
-
     margin: 0;
 
 }
 
-
-
-
-
 @media (max-width: 900px) {
-
-
-
-    /* GLOBAL */
-
-
-
     h2 {
-
         font-size: 21px;
-
     }
 
-
-
-    /* NAVIGATION */
-
-
-
     .navbar {
-
         height: 64px;
-
         padding: 0 16px;
-
         grid-template-columns: 1fr auto 1fr;
 
     }
 
-
-
     .nav-left {
-
         gap: 12px;
-
     }
-
-
 
     .nav-left a {
-
-        font-size: 12px;
-
+        font-size: 14px;
     }
-
-
 
     .nav-name {
-
-        font-size: 12px;
-
+        font-size: 14px;
         white-space: nowrap;
-
     }
-
-
 
     .theme-toggle {
-
         width: 32px;
-
         height: 32px;
-
     }
-
-
 
     .theme-icon {
-
         font-size: 21px;
-
     }
-
-
 
     /* HERO */
-
-
-
     .hero {
-
         padding: 64px 16px 24px;
-
     }
-
-
 
     .hero-title {
-
         width: 100%;
-
         max-width: 100%;
-
         font-size: clamp(34px, 10vw, 54px);
-
         line-height: 0.95;
-
         overflow-wrap: anywhere;
-
     }
-
-
 
     /* WORKS / PROJECTS */
-
-
-
     .works {
-
         margin-top: 100svh;
-
     }
-
-
 
     .works-stage {
-
         height: 100svh;
-
     }
-
-
 
     .heading {
-
         padding: 24px 16px;
-
         margin-bottom: 16px;
-
     }
-
-
 
     .heading h2 {
-
         font-size: 21px;
-
     }
-
-
 
     .project-grid {
-
         grid-template-columns: 1fr;
-
         width: 100%;
-
     }
-
-
 
     .project-card {
-
         width: 100%;
-
     }
-
-
 
     .project-image {
         width: 100%;
     }
-
-
 
     .project-image img {
         width: 100%;
@@ -1621,512 +1530,296 @@ video.project-media {
 
     }
 
-
-
     /* Make project information accessible without hover */
-
-
-
     .project-overlay {
-
         padding: 16px;
-
         opacity: 1;
-
         background: linear-gradient(to top,
-
                 rgba(0, 0, 0, 0.75),
-
                 rgba(0, 0, 0, 0.05));
 
     }
 
-
-
     .project-info {
-
         opacity: 1;
-
         transform: none;
-
     }
-
-
 
     .project-info h3 {
-
         font-size: 21px;
-
         margin-bottom: 6px;
-
     }
-
-
 
     .project-info p {
-
-        font-size: 12px;
-
+        font-size: 16px;
         line-height: 1.6;
-
     }
-
-
 
     .project-view {
-
         margin-top: 10px;
-
-        font-size: 12px;
-
+        font-size: 16px;
     }
-
-
 
     .project-card:hover .project-image img,
 
     .project-card:focus-visible .project-image img {
-
         transform: none;
-
     }
-
-
 
     /* Project title */
 
     .modal-intro {
-
-        margin-bottom: 2rem;
-
+        margin-bottom: 1rem;
     }
-
-
 
     .modal-intro h2 {
-
         margin: 0;
-
     }
-
-
 
     /* First row: media 60%, information 40% */
-
     .project-first-row {
-
         display: grid;
-
         grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-
         gap: 2rem;
-
         align-items: start;
-
         margin-bottom: 3rem;
-
     }
-
-
 
     .project-first-media,
 
     .project-meta {
-
         min-width: 0;
-
     }
-
-
 
     /* All media */
-
     .project-media-item {
-
         width: 100%;
-
-        margin-bottom: 3rem;
-
     }
-
-
 
     .project-media {
-
         display: block;
-
         width: 100%;
-
         height: auto;
-
         object-fit: contain;
-
     }
-
-
 
     /* Introductory information */
-
     .project-meta p {
-
         margin-top: 0;
-
         margin-bottom: 1rem;
-
     }
-
-
 
     /* Paragraph under each image or video */
-
     .project-media-description {
-
         margin: 1rem 0 0;
-
         max-width: 100%;
-
         font: inherit;
-
-        line-height: inherit;
-
+        line-height: 130%;
     }
 
+    .modal-hero {
+        display: block;
+        width: 100%;
+        height: 40vh;
+        padding: 0;
+
+    }
 
 
     /* ABOUT HERO */
-
-
-
     .about {
-
         margin-bottom: 16px;
-
     }
-
-
 
     .about-hero {
-
         height: 75svh;
-
         min-height: 420px;
-
     }
-
-
 
     .about-image {
-
         object-position: center;
-
     }
-
-
 
     .about-typewriter {
-
         padding: 0 16px;
-
         font-size: clamp(32px, 9vw, 52px);
-
         line-height: 1;
-
         overflow-wrap: anywhere;
-
     }
-
-
 
     /* ABOUT TEXT */
-
-
-
     .about-text {
-
         font-size: clamp(20px, 5.5vw, 26px);
-
         line-height: 1.35;
-
         margin-bottom: 64px;
-
     }
-
-
 
     .about-text p {
-
         margin-bottom: 20px;
-
     }
-
-
 
     .about-block {
-
         width: 100%;
-
         margin-bottom: 48px;
-
     }
-
-
 
     .about-wrapper {
-
         min-height: auto;
-
         padding: 0 16px 32px;
-
     }
-
-
 
     /* CV / EXPERIENCE */
-
-
-
     .cv-content {
-
         width: 100%;
-
     }
-
-
 
     .cv-section {
-
         margin-bottom: 56px;
-
     }
-
-
 
     .cv-grid {
-
         grid-template-columns: 1fr;
-
         column-gap: 0;
-
         row-gap: 40px;
-
     }
-
-
 
     .cv-grid h1 {
-
         font-size: 21px;
-
         margin-bottom: 22px;
-
     }
-
-
 
     .cv-left h2,
 
     .cv-right h2 {
-
         font-size: 21px;
-
         line-height: 1.15;
-
         margin-bottom: 6px;
-
     }
-
-
 
     .cv-left h3,
 
     .cv-right h3 {
-
         font-size: 16px;
-
         line-height: 1.45;
-
         margin-bottom: 12px;
-
     }
-
-
 
     .cv-hover-item {
-
         margin-bottom: 20px;
-
     }
 
-
-
-    /* Hover collages are unsuitable for touch screens */
-
-
-
-    .cv-hover-preview {
-
-        display: none;
-
+    .cv-hover-item.is-pressing .cv-hover-preview {
+        display: flex;
+        position: fixed;
+        z-index: 9998;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: min(90vw, 500px);
+        max-height: 75dvh;
+        overflow-y: auto;
+        padding: 12px;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+        background: white;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+        pointer-events: none;
     }
 
+    .cv-hover-item.is-pressing .cv-hover-preview img {
+        display: block;
+        width: 100%;
+        max-height: 60dvh;
+        object-fit: contain;
+    }
 
-
-    .cv-hover-item:hover h2,
-
-    .cv-hover-item:hover h3,
-
-    .cv-hover-item:focus-visible h2,
-
-    .cv-hover-item:focus-visible h3 {
-
+    .cv-hover-item.is-pressing h2,
+    .cv-hover-item.is-pressing h3 {
         color: inherit;
-
     }
-
-
 
     /* FOOTER */
-
-
-
     .footer {
-
         padding: 32px 16px 24px;
-
         gap: 28px;
-
     }
 
-
-
     .footer h2 {
-
         font-size: clamp(34px, 10vw, 52px);
-
         line-height: 1;
-
         overflow-wrap: anywhere;
-
     }
 
 
 
     .footer-links {
-
         gap: 10px;
-
     }
-
-
 
     .footer-links a {
-
-        font-size: 12px;
-
+        font-size: 16px;
     }
-
-
 
     .footer-note {
-
-        font-size: 11px;
-
+        font-size: 13px;
         line-height: 1.5;
-
     }
-
-
-
 }
-
-
-
 
 
 /* TABLET AND MOBILE */
 
 @media (max-width: 800px) {
-
     .modal-close {
-
         top: 10px;
-
         right: 10px;
-
     }
-
-
 
     .modal-hero {
-
         margin: 0 20px 32px;
-
     }
-
-
 
     .modal-hero .project-media {
-
-        max-height: 65vh;
-
+        height: 50vh;
+        object-fit: cover;
+        object-position: center;
     }
-
-
 
     .modal-intro {
-
         margin: 0 20px 48px;
-
     }
-
-
 
     #modalTitle {
-
         font-size: clamp(34px, 9vw, 52px);
-
     }
-
-
 
     .modal-heading-meta {
-
-        font-size: 12px;
-
+        font-size: 16px;
     }
 
-
-
     .project-description {
-
-        font-size: 14px;
-
+        font-size: 16px;
+        text-align: left;
+        line-height: 130%;
+        margin-bottom: 20px;
     }
 
 
 
     .modal-gallery {
-
         width: calc(100% - 40px);
-
         gap: 56px;
-
     }
 
 
 
     .project-media-description {
-
         font-size: 14px;
-
     }
 
-
-
     .modal-footer {
-
         padding: 8px 16px;
-
     }
 
 }
@@ -2134,11 +1827,8 @@ video.project-media {
 
 
 @media (prefers-reduced-motion: reduce) {
-
     .project-modal {
-
         transition: none;
-
     }
 
 }
@@ -2188,7 +1878,6 @@ video.project-media {
 
 .modal-gallery {
     max-width: 1200px;
-    margin-inline: auto;
 }
 
 .modal-footer {
@@ -2217,25 +1906,21 @@ video.project-media {
     .navbar,
     .hero,
     .heading,
-    .project-grid,
     .modal-footer,
     .about-wrapper,
     .footer {
         padding-inline: var(--page-gutter);
     }
 
+    /* 
     .modal-hero {
         width: calc(100% - (2 * var(--page-gutter)));
         margin: 0 auto 32px;
-    }
+    } */
 
     .modal-intro {
         width: calc(100% - (2 * var(--page-gutter)));
         margin-inline: auto;
-    }
-
-    .modal-gallery {
-        width: calc(100% - (2 * var(--page-gutter)));
     }
 
     .modal-close {
