@@ -304,7 +304,26 @@ document.addEventListener("DOMContentLoaded", async () => {
             title.textContent = project.title;
 
             const description = document.createElement("p");
-            description.textContent = project.description || "";
+
+            const fullDescription = project.description || "";
+            const words = fullDescription.trim().split(/\s+/);
+
+            if (words.length > 20) {
+                const preview = words
+                    .slice(0, 20)
+                    .join(" ")
+                    .replace(/[.,!?;:"'“”‘’()[\]{}]+/g, "");
+
+                description.textContent = preview + "...";
+                const readMore = document.createElement("span");
+                readMore.className = "read-more";
+                readMore.textContent = "READ MORE";
+
+                description.appendChild(document.createElement("br"));
+                description.appendChild(readMore);
+            } else {
+                description.textContent = fullDescription;
+            }
 
             const viewLabel = document.createElement("span");
             viewLabel.className = "project-view";
@@ -593,6 +612,62 @@ document.addEventListener("DOMContentLoaded", async () => {
         openProject(nextIndex, false);
     });
 
+
+    // ----------------------------------------
+    // TOUCHSCREEN SWIPE NAVIGATION
+    // ----------------------------------------
+
+    const modalContent = modal.querySelector(".modal-content");
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    if (modalContent) {
+        modalContent.addEventListener("touchstart", (event) => {
+            if (event.touches.length !== 1) return;
+
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        }, { passive: true });
+
+        modalContent.addEventListener("touchend", (event) => {
+            if (event.changedTouches.length !== 1) return;
+
+            const target = event.target;
+
+            // Don't interfere with interactive controls.
+            if (target.closest(
+                "button, a, input, textarea, select, " +
+                "[contenteditable='true']"
+            )) {
+                return;
+            }
+
+            const endX = event.changedTouches[0].clientX;
+            const endY = event.changedTouches[0].clientY;
+
+            const deltaX = endX - touchStartX;
+            const deltaY = endY - touchStartY;
+
+            // Require a clear horizontal swipe.
+            if (
+                Math.abs(deltaX) < 60 ||
+                Math.abs(deltaX) < Math.abs(deltaY) * 1.3
+            ) {
+                return;
+            }
+
+            if (deltaX < 0) {
+                // Swipe left: next project.
+                nextButton.click();
+            } else {
+                // Swipe right: previous project.
+                prevButton.click();
+            }
+        }, { passive: true });
+    }
+
+
     document.addEventListener("keydown", (event) => {
         if (!modal.classList.contains("is-open")) return;
 
@@ -707,4 +782,34 @@ document.addEventListener("DOMContentLoaded", () => {
         childList: true,
         subtree: true
     });
+});
+
+
+
+document.querySelectorAll(".cv-hover-item").forEach((item) => {
+    let pressTimer;
+    let isPressing = false;
+
+    function startPress(event) {
+        if (event.pointerType === "mouse") return;
+
+        pressTimer = setTimeout(() => {
+            isPressing = true;
+            item.classList.add("is-pressing");
+        }, 350);
+    }
+
+    function endPress() {
+        clearTimeout(pressTimer);
+
+        if (isPressing) {
+            item.classList.remove("is-pressing");
+            isPressing = false;
+        }
+    }
+
+    item.addEventListener("pointerdown", startPress);
+    item.addEventListener("pointerup", endPress);
+    item.addEventListener("pointercancel", endPress);
+    item.addEventListener("pointerleave", endPress);
 });
