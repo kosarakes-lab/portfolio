@@ -14,68 +14,66 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👀</text></svg>" />
 
 <body>
-    <!-- nav -->
     <header class="navbar" id="navbar">
-
         <div class="nav-left">
-            <a href="#works">works</a>
-            <a href="#about">about</a>
+            <a href="#">KOSARA KESKINOVA</a>
         </div>
 
-        <a href="#" class="nav-name" id="navName">
-            <b>Kosara Keskinova</a>
+        <!-- Center text aligned on the exact same line/baseline -->
+        <div class="nav-center">
+            <span>information designer doing</span>
+        </div>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light theme" type="button">
-            <span class="theme-icon" id="themeIcon">☾</span>
-        </button>
-
+        <div class="nav-right">
+            <a href="#about">ABOUT</a>
+        </div>
     </header>
 
-    <!-- hero -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light theme" type="button">
+        <span class="theme-icon" id="themeIcon">◕</span>
+    </button>
+
     <main>
-        <section class="hero">
-
-            <p class="hero-title">
-                information designer doing
+        <!-- Top Half (50vh) -->
+        <section class="hero-top">
+            <!-- Second line: Typewriter word appearing right below the center navbar text -->
+            <div class="hero-typewriter">
                 <span class="typing-wrapper">
-                    <span class="changing-word" id="changingWord">
-                    </span>
-                    <span class="typing-cursor" aria-hidden="true">
-                    </span>
+                    <span class="changing-word" id="changingWord"></span>
+                    <span class="typing-cursor" aria-hidden="true"></span>
                 </span>
-            </p>
-        </section>
-
-
-        <section class="works" id="works">
-            <div class="project-grid" id="projectGrid">
-                <!-- Project cards are generated from projects.json -->
             </div>
-            <button class="load-more" id="loadMore" hidden>
-                see more
-            </button>
+
+            <!-- Pinned at the bottom of the 50vh top half -->
+            <div class="selected-projects">
+                <div class="sp-left">Selected Projects</div>
+                <div class="sp-right">2026 — 2025</div>
+            </div>
         </section>
 
-        <!-- <footer class="footer">
-            <h2>
-                There's more to the story
-            </h2> -->
-        </footer>
+        <!-- Bottom Half Box (50vh) -->
+        <div class="preview-box">
+            <img id="previewImage" class="preview-img" alt="">
+
+            <video id="previewVideo" class="preview-img" muted loop playsinline preload="auto"></video>
+        </div>
+
+        <!-- Works Section -->
+        <section class="works">
+            <div class="projects" id="projects">
+                <!-- Rendered by JavaScript -->
+            </div>
+
+            <div class="load-more-wrapper">
+                <button class="load-more" id="loadMore" hidden>
+                    This was not the last project here. Do you want to see more?
+                </button>
+            </div>
+        </section>
 
         <!-- about -->
         <section class="about" id="about">
-            <!-- <div class="about-hero">
-                <img src="images/about.jpg" alt="About me" class="about-image" />
-                <div class="about-overlay"></div>
-                <div class="about-typewriter">
-                    <span id="aboutText"></span>
-                </div>
-            </div> -->
-
             <section class="about-wrapper">
-                <div class="heading">
-                    <h2>about</h2>
-                </div>
                 <div class="about-text">
                     <p>
                         Born in post-Soviet, democratic Bulgaria,
@@ -84,216 +82,171 @@
                         corner of Italy
                         before landing in the Netherlands for my master's
                         degree.
-                    </p>
-                    <p>
                         Somewhere along the way, I started working with data
                         through infographics, laying out research and turning
                         plain information into visual stories.
-                        What started as an exploration out of curiousity eventually
-                        became my job which I absolutely love!
+                        I focus mainly on issues of social justice, politics, and media, using data visualization,
+                        motion, and
+                        editorial design to make critical topics legible and engaging.
+                    </p>
+                    <p>
+                        ☼ Currently in Eindhoven
+                    </p>
+                    <p>
+                        ☼ Transfering to Sofia
                     </p>
                 </div>
-                <div class="cv-content">
-                    <div class="cv-grid">
+                <div class="about-list">
+                    <div class="table">
+                        <h1>education</h1>
+                        <div class="row">
+                            <div class="when">2024 — 2026</div>
+                            <div class="what">Design Academy Eindhoven</div>
+                            <div class="detail">MA Information Design</div>
+                            
+                        </div>
 
-                        <!-- LEFT SIDE -->
-                        <div class="cv-left">
+                        <div class="row">
+                            <div class="when">2018 — 2022</div>
+                            <div class="what">Free University of Bolzano</div>
+                            <div class="detail">BA Industrial Design</div>
+                            
+                        </div>
+                    </div>
 
-                            <div class="cv-section">
-                                <h1>education</h1>
-
-                                <h2>Design Academy Eindhoven</h2>
-                                <h3>2024 — 2026 ☼ MA Information Design</h3>
-
-                                <h2>Free University of Bolzano</h2>
-                                <h3>2018 — 2022 ☼ BA Industrial Design</h3>
-                            </div>
-
-                            <div class="cv-section">
-                                <h1>experience</h1>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>Corriere della Sera</h2>
-                                    <h3>2024 — Present ☼ Data Visualisation</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/work/corriere-01.jpg" alt="">
-                                        <img src="images/work/corriere-02.jpg" alt="">
-                                        <img src="images/work/corriere-03.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>Data for Good (Bulgaria)</h2>
-                                    <h3>2023 — Present ☼ Data Visualisation</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/work/data-for-good-03.jpg" alt="">
-
-                                        <img src="images/work/data-for-good-01.jpg" alt="">
-                                        <img src="images/work/data-for-good-02.jpg" alt="">
-
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>Sheldon.Studio</h2>
-                                    <h3>2023 — 2024 ☼ Information design</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/work/sheldon-01.jpg" alt="">
-                                    </div>
-                                </div>
+                    <div class="table">
+                        <h1>experience</h1>
+                        <div class="row">
+                            <div class="when">2024 — NOW</div>
+                            <div class="what">Corriere della Sera</div>
+                            <div class="detail">Data Visualisation</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/corriere-01.jpg" alt="">
+                                <img src="images/about/corriere-02.jpg" alt="">
+                                <img src="images/about/corriere-03.jpg" alt="">
                             </div>
                         </div>
 
-
-                        <!-- RIGHT SIDE -->
-                        <div class="cv-right">
-                            <div class="cv-section">
-                                <h1>achievements</h1>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>European Design Award</h2>
-                                    <h3>2025 ☼ Bronze Award ☼ Sheldon Studio</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/work/sheldon-01.jpg" alt="">
-                                        <img src="images/achievements/eda-2025.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>Dear Sofia</h2>
-                                    <h3>2024 ☼ Workshop</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/achievements/dear-sofia-01.jpg" alt="">
-                                        <img src="images/achievements/dear-sofia-02.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>BAM Festival</h2>
-                                    <h3>2024 ☼ Exhibition</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/achievements/bam-festival-01.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>Fight for Kindness</h2>
-                                    <h3>2024 ☼ Exhibition</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/achievements/kindness-01.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>Neologia | Graphic Days di Torino</h2>
-                                    <h3>2024 ☼ Exhibition</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/achievements/neologia-2024-01.jpg" alt="">
-                                        <img src="images/achievements/neologia-2024-02.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>Neologia | Graphic Days di Torino</h2>
-                                    <h3>2023 ☼ Exhibition</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/achievements/eda-2023-01.jpg" alt="">
-                                        <img src="images/achievements/eda-2023-03.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="cv-hover-item" tabindex="0">
-                                    <h2>European Design Award</h2>
-                                    <h3>2023 ☼ Finalist Award</h3>
-
-                                    <div class="cv-hover-preview" aria-hidden="true">
-                                        <img src="images/achievements/eda-2023-01.jpg" alt="">
-                                        <img src="images/achievements/eda-2023-02.jpg" alt="">
-                                        <img src="images/achievements/eda-2023-03.jpg" alt="">
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="when">2023 — NOW</div>
+                            <div class="what">Data for Good (Bulgaria)</div>
+                            <div class="detail">Data Visualisation</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/data-for-good-03.jpg" alt="">
+                                <img src="images/about/data-for-good-01.jpg" alt="">
+                                <img src="images/about/data-for-good-02.jpg" alt="">
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="when">2023 — 2024</div>
+                            <div class="what">Sheldon.Studio</div>
+                            <div class="detail">Information design</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/sheldon-01.jpg" alt="">
+                                <img src="images/about/sheldon-01.jpg" alt="">
+                                <img src="images/about/sheldon-01.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wrapped achievements inside .table for clean layout -->
+                    <div class="table">
+                        <h1>achievements</h1>
+                        <div class="row">
+                            <div class="when">2025</div>
+                            <div class="what">European Design Award</div>
+                            <div class="detail">Bronze Award ☼ Sheldon Studio</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/sheldon-01.jpg" alt="">
+                                <img src="images/about/eda-2025.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="when">2024</div>
+                            <div class="what">Dear Sofia</div>
+                            <div class="detail">Workshop</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/dear-sofia-01.jpg" alt="">
+                                <img src="images/about/dear-sofia-02.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="when">2024</div>
+                            <div class="what">BAM Festival</div>
+                            <div class="detail">Exhibition</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/bam-festival-01.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="when">2024</div>
+                            <div class="what">Neologia ☼ Graphic Days di Torino</div>
+                            <div class="detail">Exhibition</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/neologia-2024-01.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="when">2024</div>
+                            <div class="what">Fight for Kindness</div>
+                            <div class="detail">Exhibition</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/kindness-01.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="when">2023</div>
+                            <div class="what">Neologia ☼ Graphic Days di Torino</div>
+                            <div class="detail">Exhibition</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/eda-2023-01.jpg" alt="">
+                                <img src="images/about/eda-2023-03.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="when">2023</div>
+                            <div class="what">European Design Award</div>
+                            <div class="detail">Finalist Award</div>
+                            <div class="hover-preview" aria-hidden="true">
+                                <img src="images/about/sheldon-01.jpg" alt="">
+                                <img src="images/about/eda-2025.jpg" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="place">
-                    <h2>Currently in Eindhoven ☼ Transfering to Sofia</h2>
-                </div>
             </section>
-
-
-
-
         </section>
-
-
 
         <!-- footer -->
         <footer class="footer">
-            <h2>
-                Let’s work together!
-            </h2>
-            <div class="footer-links">
-                <a href="mailto:hello@kosarakeskinova.com">hello@kosarakeskinova.com</a>
-                <!-- <a href="https://www.linkedin.com/in/kosara-keskinova-a268a3147/">LinkedIn</a> -->
-                <a href="https://www.instagram.com/kosara_keskinova/">Instagram</a>
+            <div class="footer-top-row">
+                <div class="footer-links">
+                    <a href="mailto:hello@kosarakeskinova.com">email</a>
+                    <a href="https://www.instagram.com/kosara_keskinova/">Instagram</a>
+                </div>
+                <h2>Let’s work together!</h2>
+                <div class="spacer" aria-hidden="true"></div>
             </div>
 
-            <div>
-                <p class="footer-note">© 2026 Kosara Keskinova</p>
-            </div>
-
+            <!-- Bottom: Disclaimer on the left -->
+            <p class="footer-note">This website was vibecoded ☼ Every text was personally written ☼ Last Update Oct 2026</p>
         </footer>
+
     </main>
     <script src="script.js"></script>
-</body>
 
-
-
-<!-- PROJECT LIGHTBOX -->
-<div class="project-modal" id="projectModal" aria-hidden="true">
-
-    <!-- Fixed close button, outside the scrolling panel -->
-    <button class="modal-close" id="modalClose" type="button" aria-label="Close project">
-        <span aria-hidden="true">✕</span>
-    </button>
-
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-
-        <div class="modal-content">
-
-            <!-- Large opening image -->
-            <div class="modal-hero" id="modalHero"></div>
-
-            <!-- Title, client, category and project description -->
-            <div class="modal-intro">
-                <h2 id="modalTitle">Project title</h2>
-                <div id="modalHeadingMeta" class="modal-heading-meta"></div>
-                <p id="modalDescription" class="project-description"></p>
-            </div>
-
-            <!-- Remaining images and videos -->
-            <div class="modal-gallery" id="modalGallery"></div>
-
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+        <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">close</button>
+        <div class="project-modal-body" id="projectModalBody">
         </div>
-
-        <footer class="modal-footer">
-            <button type="button" id="modalPrev" aria-label="Previous project">←</button>
-            <button type="button" id="modalNext" aria-label="Next project">→</button>
-        </footer>
-
     </div>
-</div>
-
+</body>
 
 </html>
