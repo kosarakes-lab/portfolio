@@ -1,14 +1,15 @@
 const navbar = document.getElementById("navbar");
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
-
 const changingWord = document.getElementById("changingWord");
+const previewImage = document.getElementById("previewImage");
+const previewVideo = document.getElementById("previewVideo");
 
+// Scroll behavior
 let lastScrollY = window.scrollY;
-
 window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
-    if (currentScrollY < 30) {
+    if (currentScrollY < 100) {
         navbar.classList.remove("nav-hidden");
         lastScrollY = currentScrollY;
         return;
@@ -16,49 +17,82 @@ window.addEventListener("scroll", () => {
     if (currentScrollY > lastScrollY) {
         navbar.classList.add("nav-hidden");
     }
-
     lastScrollY = currentScrollY;
-
 });
 
 window.addEventListener("mousemove", (event) => {
-
     if (event.clientY < 80) {
         navbar.classList.remove("nav-hidden");
     }
-
 });
 
+// Dark/Light Theme toggle
 themeToggle.addEventListener("click", () => {
-
     document.body.classList.toggle("dark");
-    if (document.body.classList.contains("dark")) {
-        themeIcon.textContent = "☀";
-    } else {
-        themeIcon.textContent = "☾";
+    themeIcon.textContent = document.body.classList.contains("dark") ? "◔" : "◕";
+});
+
+//about section
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. "ABOUT" button -> Smooth scroll to the about section
+    const aboutLink = document.querySelector('.nav-right a[href="#about"]');
+    if (aboutLink) {
+        aboutLink.addEventListener("click", (e) => {
+            e.preventDefault(); // Prevents adding "#about" to the URL
+
+            // Replace with your about section ID or class (e.g., #about or .about-wrapper)
+            const target = document.querySelector("#about") || document.querySelector(".about-wrapper");
+
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
     }
 
+    // 2. "KOSARA KESKINOVA" button -> Smooth scroll back to the top
+    const homeLink = document.querySelector('.nav-left a[href="#"]');
+    if (homeLink) {
+        homeLink.addEventListener("click", (e) => {
+            e.preventDefault(); // Prevents jumping or adding "#" to URL
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
 });
 
-const words = [
-    "data visualisation",
-    "motion graphics",
-    "visual journalism",
-    "editorial design",
-    "visual storytelling",
-    "creative research"
-
+// Word + Image Data Pairs
+const items = [
+    {
+        text: "data visualisation",
+        type: "image",
+        src: "images/about/data-viz.png"
+    },
+    {
+        text: "motion graphics",
+        type: "video",
+        src: "videos/motion-graphics.mp4"
+    },
+    {
+        text: "editorial design",
+        type: "video",
+        src: "videos/editorial-design.mp4"
+    }
 ];
 
-const typingSpeed = 75;      // milliseconds per character
-const deletingSpeed = 45;    // milliseconds per character
-const pauseAfterTyping = 1800;
-const pauseAfterDeleting = 400;
+const typingSpeed = 75;
+const deletingSpeed = 40;
+const pauseAfterTyping = 2000;
+const pauseAfterDeleting = 300;
 
-function wait(milliseconds) {
-    return new Promise(resolve => {
-        setTimeout(resolve, milliseconds);
-    });
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function typeWord(word) {
@@ -75,741 +109,375 @@ async function deleteWord(word) {
     }
 }
 
-async function typingLoop() {
-    let currentWordIndex = 0;
-    while (true) {
-        const currentWord = words[currentWordIndex];
-        await typeWord(currentWord);
-        await wait(pauseAfterTyping);
-        await deleteWord(currentWord);
-        await wait(pauseAfterDeleting);
-        currentWordIndex =
-            (currentWordIndex + 1) % words.length;
+// Switch between image and video
+async function showMedia(item) {
+    // Hide both before switching
+    previewImage.classList.remove("visible");
+    previewVideo.classList.remove("visible");
+
+    previewVideo.pause();
+
+    if (item.type === "video") {
+        previewImage.removeAttribute("src");
+
+        previewVideo.src = item.src;
+        previewVideo.load();
+
+        try {
+            await previewVideo.play();
+            previewVideo.classList.add("visible");
+        } catch (error) {
+            console.warn("Video could not autoplay:", error);
+        }
+    } else {
+        previewVideo.removeAttribute("src");
+        previewVideo.load();
+
+        previewImage.src = item.src;
+
+        if (previewImage.complete && previewImage.naturalWidth > 0) {
+            previewImage.classList.add("visible");
+        } else {
+            previewImage.onload = () => {
+                previewImage.classList.add("visible");
+            };
+        }
     }
 }
+
+// Typewriter loop
+async function typingLoop() {
+    let index = 0;
+
+    while (true) {
+        const currentItem = items[index];
+
+        // Display the corresponding media
+        showMedia(currentItem);
+
+        // Type the text
+        await typeWord(currentItem.text);
+        await wait(pauseAfterTyping);
+
+        // Fade out media
+        previewImage.classList.remove("visible");
+        previewVideo.classList.remove("visible");
+
+        await wait(500);
+        previewVideo.pause();
+
+        // Delete the text
+        await deleteWord(currentItem.text);
+        await wait(pauseAfterDeleting);
+
+        index = (index + 1) % items.length;
+    }
+}
+
 typingLoop();
 
-// load more
-
-const loadMoreButton = document.getElementById("loadMore");
-const hiddenProjects = document.querySelectorAll(".hidden-project");
-
-const projectsPerLoad = 9;
-let visibleProjects = 9;
-
-loadMoreButton.addEventListener("click", () => {
-    const nextProjects = Array.from(hiddenProjects).slice(
-        visibleProjects - 9,
-        visibleProjects
-    );
-
-    nextProjects.forEach(project => {
-        project.style.display = "block";
-    });
-
-    visibleProjects += projectsPerLoad;
-
-    if (visibleProjects >= document.querySelectorAll(".project-card").length) {
-        loadMoreButton.style.display = "none";
-    }
-});
-
-// card animation
-const projectCards = document.querySelectorAll(".project-card");
-
-const projectObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const cards = Array.from(
-                    projectGrid.querySelectorAll(".project-card")
-                );
-
-                const index = cards.indexOf(card);
-
-                card.style.transitionDelay =
-                    `${(index % 3) * 220}ms`;
-
-                card.classList.add("visible");
-            }
-        });
-    },
-    {
-        threshold: 0.15
-    }
-);
-
-projectCards.forEach((card) => {
-    projectObserver.observe(card);
-});
-
-
-
-const aboutHero = document.querySelector(".about-hero");
-const aboutText = document.getElementById("aboutText");
-
-const aboutLines = [
-    "from passion",
-    "to profession"
-];
-
-let aboutAnimationId = 0;
-
-function aboutWait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function playAboutTypewriter() {
-    const animationId = ++aboutAnimationId;
-
-    aboutText.textContent = "";
-
-    // Type the first line
-    for (let i = 0; i < aboutLines[0].length; i++) {
-        if (animationId !== aboutAnimationId) return;
-
-        aboutText.textContent = aboutLines[0].slice(0, i + 1);
-        await aboutWait(75);
-    }
-
-    if (animationId !== aboutAnimationId) return;
-
-    // Create a real line break and a second text node
-    const firstLine = document.createTextNode(aboutLines[0]);
-    const lineBreak = document.createElement("br");
-    const secondLine = document.createTextNode("");
-
-    aboutText.replaceChildren(firstLine, lineBreak, secondLine);
-
-    await aboutWait(300);
-
-    // Type the second line
-    for (let i = 0; i < aboutLines[1].length; i++) {
-        if (animationId !== aboutAnimationId) return;
-
-        secondLine.textContent = aboutLines[1].slice(0, i + 1);
-        await aboutWait(75);
-    }
-}
-
-if (aboutHero && aboutText) {
-    const aboutObserver = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    playAboutTypewriter();
-                } else {
-                    // Cancel any animation currently running
-                    aboutAnimationId++;
-                    aboutText.textContent = "";
-                }
-            });
-        },
-        {
-            threshold: 0.3
-        }
-    );
-
-    aboutObserver.observe(aboutHero);
-}
-
-
-document.addEventListener("DOMContentLoaded", async () => {
-    const grid = document.getElementById("projectGrid");
-    const loadMoreButton = document.getElementById("loadMore");
-
-    const modal = document.getElementById("projectModal");
-    const closeButton = document.getElementById("modalClose");
-    const prevButton = document.getElementById("modalPrev");
-    const nextButton = document.getElementById("modalNext");
-
-    const titleElement = document.getElementById("modalTitle");
-    const categoryElement = document.getElementById("modalCategory");
-
-    const counterElement = document.getElementById("modalCounter");
-    const gallery = document.getElementById("modalGallery");
-    const descriptionElement =
-        document.getElementById("modalDescription");
-
-    if (!grid || !modal) return;
-
-    const INITIAL_PROJECTS = 9;
-
-    let projects = [];
-    let currentIndex = 0;
-    let previouslyFocused = null;
-    let previousBodyOverflow = "";
-
-    // ----------------------------------------
-    // LOAD PROJECT DATA
-    // ----------------------------------------
-
-    try {
-        const response = await fetch("projects.json");
-
-        if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        projects = await response.json();
-
-        if (!Array.isArray(projects)) {
-            throw new Error("projects.json must contain an array.");
-        }
-
-        renderProjects();
-    } catch (error) {
-        console.error("Could not load projects:", error);
-
-        grid.textContent =
-            "Projects could not be loaded. Please try again later.";
-    }
-
-    // ----------------------------------------
-    // GENERATE PROJECT CARDS
-    // ----------------------------------------
-
-    function renderProjects() {
-        grid.replaceChildren();
-
-        projects.forEach((project, index) => {
-            const card = document.createElement("article");
-
-            card.className = "project-card";
-            card.dataset.project = index;
-            card.tabIndex = 0;
-            card.setAttribute("role", "button");
-            card.setAttribute(
-                "aria-label",
-                `View ${project.title}`
-            );
-
-
-            const imageContainer = document.createElement("div");
-            imageContainer.className = "project-image";
-
-            const image = document.createElement("img");
-            image.src = project.cover;
-            image.alt = project.alt || project.title;
-            image.loading = index < INITIAL_PROJECTS ? "eager" : "lazy";
-            image.decoding = "async";
-
-            const overlay = document.createElement("div");
-            overlay.className = "project-overlay";
-
-            const info = document.createElement("div");
-            info.className = "project-info";
-
-            const title = document.createElement("h3");
-            title.textContent = project.title;
-
-            const description = document.createElement("p");
-
-            const fullDescription = project.description || "";
-            const words = fullDescription.trim().split(/\s+/);
-
-            if (words.length > 20) {
-                const preview = words
-                    .slice(0, 20)
-                    .join(" ")
-                    .replace(/[.,!?;:"'“”‘’()[\]{}]+/g, "");
-
-                description.textContent = preview + "...";
-                const readMore = document.createElement("span");
-                readMore.className = "read-more";
-                readMore.textContent = "READ MORE";
-
-                description.appendChild(document.createElement("br"));
-                description.appendChild(readMore);
-            } else {
-                description.textContent = fullDescription;
-            }
-
-            const viewLabel = document.createElement("span");
-            viewLabel.className = "project-view";
-            // viewLabel.textContent = "VIEW PROJECT ↗";
-
-            info.append(title, description, viewLabel);
-            overlay.appendChild(info);
-            imageContainer.append(image, overlay);
-            card.appendChild(imageContainer);
-            grid.appendChild(card);
-
-        });
-
-        updateLoadMoreButton();
-    }
-
-    function updateLoadMoreButton() {
-        if (!loadMoreButton) return;
-
-        const hasMore = grid.querySelector(".hidden-project");
-
-        loadMoreButton.hidden = !hasMore;
-    }
-
-    // ----------------------------------------
-    // SEE MORE
-    // ----------------------------------------
-
-    if (loadMoreButton) {
-        loadMoreButton.addEventListener("click", () => {
-            const hiddenCards = grid.querySelectorAll(
-                ".project-card.hidden-project"
-            );
-
-            hiddenCards.forEach((card, index) => {
-                card.classList.remove("hidden-project");
-
-                // Ensure the browser registers the initial state.
-                requestAnimationFrame(() => {
-                    card.classList.add("visible");
-                });
-            });
-
-            updateLoadMoreButton();
-        });
-    }
-
-    // ----------------------------------------
-    // OPEN PROJECT MODAL
-    // ----------------------------------------
-
-
-
-    function openProject(index, shouldFocus = true) {
-        const project = projects[index];
-
-        if (!project) return;
-
-        currentIndex = index;
-
-        if (!modal.classList.contains("is-open")) {
-            previouslyFocused = document.activeElement;
-            previousBodyOverflow = document.body.style.overflow;
-        }
-
-        titleElement.textContent = project.title || "";
-
-
-        const headingMeta = document.getElementById("modalHeadingMeta");
-
-        if (headingMeta) {
-            headingMeta.replaceChildren();
-
-            const metaItems = [project.client, project.category].filter(Boolean);
-
-            metaItems.forEach((value, index) => {
-                if (index > 0) {
-                    const separator = document.createElement("span");
-                    separator.className = "modal-meta-separator";
-                    separator.textContent = "☼";
-                    headingMeta.appendChild(separator);
-                }
-
-                const item = document.createElement("span");
-                item.textContent = value;
-                headingMeta.appendChild(item);
-            });
-        }
-
-        const descriptionElement = document.getElementById("modalDescription");
-
-        if (descriptionElement) {
-            descriptionElement.textContent = project.description || "";
-            descriptionElement.hidden = !project.description;
-        }
-
-
-        // Build the new project content.
-        gallery.replaceChildren();
-
-        // New format: media objects.
-        // Legacy format: images array of strings.
-        let mediaItems;
-
-        if (Array.isArray(project.media)) {
-            mediaItems = project.media;
-        } else if (Array.isArray(project.images)) {
-            mediaItems = project.images.map((src, i) => ({
-                type: "image",
-                src,
-                alt: i === 0
-                    ? (project.alt || project.title)
-                    : `${project.title} — image ${i + 1}`
-            }));
-        } else {
-            mediaItems = project.cover
-                ? [{
-                    type: "image",
-                    src: project.cover,
-                    alt: project.alt || project.title
-                }]
-                : [];
-        }
-
-        function createMedia(item, index) {
-            let element;
-
-
-            if (item.type === "video") {
-                element = document.createElement("video");
-
-                element.autoplay = true;
-                element.loop = true;
-                element.muted = true;
-                element.playsInline = true;
-                element.controls = false;
-                element.preload = "auto";
-
-                if (item.poster) {
-                    element.poster = item.poster;
-                }
-
-
-                const source = document.createElement("source");
-                source.src = item.src;
-                source.type = "video/mp4";
-                element.appendChild(source);
-            } else {
-                element = document.createElement("img");
-                element.src = item.src;
-                element.alt = item.alt ||
-                    `${project.title} — image ${index + 1}`;
-                element.loading = index === 0 ? "eager" : "lazy";
-                element.decoding = "async";
-            }
-
-            element.classList.add("project-media");
-
-            element.addEventListener("error", () => {
-                const wrapper = element.closest(".project-media-item");
-                if (wrapper) wrapper.remove();
-            }, { once: true });
-
-            return element;
-        }
-
-        function createMediaItem(item, index) {
-            const wrapper = document.createElement("div");
-            wrapper.className = "project-media-item";
-
-            wrapper.appendChild(createMedia(item, index));
-
-            if (item.description) {
-                const paragraph = document.createElement("p");
-                paragraph.className = "project-media-description";
-                paragraph.textContent = item.description;
-                wrapper.appendChild(paragraph);
-            }
-
-            return wrapper;
-        }
-
-        const hero = document.getElementById("modalHero");
-        hero.replaceChildren();
-        gallery.replaceChildren();
-
-        if (mediaItems.length > 0) {
-            // First media item becomes the large opening visual.
-            hero.appendChild(createMedia(mediaItems[0], 0));
-
-            // Any description for the hero sits directly beneath it.
-            if (mediaItems[0].description) {
-                const paragraph = document.createElement("p");
-                paragraph.className = "project-media-description";
-                paragraph.textContent = mediaItems[0].description;
-                hero.appendChild(paragraph);
-            }
-
-            // Remaining media items appear in the narrower centered column.
-            mediaItems.slice(1).forEach((item, i) => {
-                gallery.appendChild(createMediaItem(item, i + 1));
-            });
-        }
-
-        // Open modal.
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-
-        const content = modal.querySelector(".modal-content");
-        if (content) content.scrollTop = 0;
-
-        if (shouldFocus) {
-            closeButton.focus();
-        }
-    }
-
-
-    // ----------------------------------------
-    // CLOSE PROJECT MODAL
-    // ----------------------------------------
-
-    function closeProject() {
-        if (!modal.classList.contains("is-open")) return;
-
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = previousBodyOverflow;
-
-        if (previouslyFocused?.isConnected) {
-            previouslyFocused.focus();
-        }
-    }
-
-    // ----------------------------------------
-    // CARD INTERACTIONS
-    // ----------------------------------------
-
-    grid.addEventListener("click", (event) => {
-        const card = event.target.closest(".project-card");
-
-        if (!card || !grid.contains(card)) return;
-
-        openProject(Number(card.dataset.project));
-    });
-
-    grid.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-
-        const card = event.target.closest(".project-card");
-
-        if (!card || !grid.contains(card)) return;
-
-        event.preventDefault();
-        openProject(Number(card.dataset.project));
-    });
-
-    // ----------------------------------------
-    // MODAL INTERACTIONS
-    // ----------------------------------------
-
-    closeButton.addEventListener("click", closeProject);
-
-    modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            closeProject();
-        }
-    });
-
-
-    prevButton.addEventListener("click", () => {
-        if (!projects.length) return;
-
-        const previousIndex =
-            (currentIndex - 1 + projects.length) % projects.length;
-
-        openProject(previousIndex, false);
-    });
-
-    nextButton.addEventListener("click", () => {
-        if (!projects.length) return;
-
-        const nextIndex =
-            (currentIndex + 1) % projects.length;
-
-        openProject(nextIndex, false);
-    });
-
-
-    // ----------------------------------------
-    // TOUCHSCREEN SWIPE NAVIGATION
-    // ----------------------------------------
-
-    const modalContent = modal.querySelector(".modal-content");
-
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    if (modalContent) {
-        modalContent.addEventListener("touchstart", (event) => {
-            if (event.touches.length !== 1) return;
-
-            touchStartX = event.touches[0].clientX;
-            touchStartY = event.touches[0].clientY;
-        }, { passive: true });
-
-        modalContent.addEventListener("touchend", (event) => {
-            if (event.changedTouches.length !== 1) return;
-
-            const target = event.target;
-
-            // Don't interfere with interactive controls.
-            if (target.closest(
-                "button, a, input, textarea, select, " +
-                "[contenteditable='true']"
-            )) {
-                return;
-            }
-
-            const endX = event.changedTouches[0].clientX;
-            const endY = event.changedTouches[0].clientY;
-
-            const deltaX = endX - touchStartX;
-            const deltaY = endY - touchStartY;
-
-            // Require a clear horizontal swipe.
-            if (
-                Math.abs(deltaX) < 60 ||
-                Math.abs(deltaX) < Math.abs(deltaY) * 1.3
-            ) {
-                return;
-            }
-
-            if (deltaX < 0) {
-                // Swipe left: next project.
-                nextButton.click();
-            } else {
-                // Swipe right: previous project.
-                prevButton.click();
-            }
-        }, { passive: true });
-    }
-
-
-    document.addEventListener("keydown", (event) => {
-        if (!modal.classList.contains("is-open")) return;
-
-        if (event.key === "Escape") {
-            closeProject();
-        }
-
-        if (event.key === "ArrowLeft") {
-            prevButton.click();
-        }
-
-        if (event.key === "ArrowRight") {
-            nextButton.click();
-        }
-    });
-});
-
-
+// project-grid
 
 document.addEventListener("DOMContentLoaded", () => {
-    const hero = document.querySelector(".hero");
-    const heroTitle = document.querySelector(".hero-title");
-    const projectGrid = document.querySelector("#projectGrid");
+    const projectsContainer = document.getElementById("projects");
+    const loadMoreBtn = document.getElementById("loadMore");
+    const modal = document.getElementById("projectModal");
+    const modalBody = document.getElementById("projectModalBody");
+    const modalClose = document.getElementById("projectModalClose");
 
-    // ----------------------------------------
-    // HERO FADE
-    // ----------------------------------------
+    let allProjects = [];
+    let displayedCount = 0;
+    const PROJECTS_PER_PAGE = 5;
+    const carouselIntervals = new Map();
 
-    // Adjust these values to control the fade.
-    const heroFadeDistance = 0.75; // viewport heights
-    const heroFadeLift = 25;       // pixels
+    // 1. Fetch Projects JSON
+    fetch("projects.json")
+        .then(res => res.json())
+        .then(data => {
+            allProjects = data;
+            renderNextBatch();
+        })
+        .catch(err => console.error("Error loading projects.json:", err));
 
-    let ticking = false;
+    // 2. Render 6 projects at a time
+    function renderNextBatch() {
+        const nextBatch = allProjects.slice(displayedCount, displayedCount + PROJECTS_PER_PAGE);
+        nextBatch.forEach(project => {
+            const card = createProjectCard(project);
+            projectsContainer.appendChild(card);
+            initCarousel(card, project.media);
+        });
 
-    function updateHeroFade() {
-        if (!hero || !heroTitle) return;
+        displayedCount += nextBatch.length;
 
-        const distance =
-            window.innerHeight * heroFadeDistance;
-
-        const progress = Math.min(
-            Math.max(window.scrollY / distance, 0),
-            1
-        );
-
-        heroTitle.style.opacity = 1 - progress;
-
-        heroTitle.style.transform =
-            `translateY(${-progress * heroFadeLift}px)`;
-
-        ticking = false;
-    }
-
-    window.addEventListener("scroll", () => {
-        if (ticking) return;
-
-        ticking = true;
-        requestAnimationFrame(updateHeroFade);
-    }, { passive: true });
-
-    window.addEventListener("resize", updateHeroFade);
-
-    updateHeroFade();
-
-    // ----------------------------------------
-    // PROJECT CARD REVEAL
-    // ----------------------------------------
-
-    if (!projectGrid) return;
-
-    const rootStyles = getComputedStyle(document.documentElement);
-
-    const stagger = 320;
-
-
-    const cardObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                const card = entry.target;
-
-                if (entry.isIntersecting) {
-                    // Pop into view
-                    card.classList.add("visible");
-                } else {
-                    // Reset when scrolling away
-                    card.classList.remove("visible");
-                    card.style.transitionDelay = "0ms";
-                }
-            });
-        },
-
-        {
-            threshold: 0.15,
-            rootMargin: "0px 0px -40px 0px"
+        // Toggle Load More button
+        if (displayedCount < allProjects.length) {
+            loadMoreBtn.hidden = false;
+        } else {
+            loadMoreBtn.hidden = true;
         }
-    );
-
-    function observeCards() {
-        projectGrid
-            .querySelectorAll(".project-card:not([data-reveal-observed])")
-            .forEach((card) => {
-                card.dataset.revealObserved = "true";
-                cardObserver.observe(card);
-            });
     }
 
-    observeCards();
+    loadMoreBtn.addEventListener("click", renderNextBatch);
 
-    const mutationObserver = new MutationObserver(observeCards);
+    // 3. Card Template Builder
+    function createProjectCard(project) {
+        const card = document.createElement("article");
+        card.className = "project-card";
+        card.id = `project-${project.id}`;
 
-    mutationObserver.observe(projectGrid, {
-        childList: true,
-        subtree: true
+        // 1. Top Header Table
+        const header = document.createElement("div");
+        header.className = "project-header";
+        header.innerHTML = `
+        <h1>${project.h1 || "Project"}</h1>
+        <div class="project-row" role="button" tabindex="0" aria-label="Open details for ${project.what}">
+            <div class="project-when">${project.when || ""}</div>
+            <div class="project-what">${project.what || ""}</div>
+            <div class="project-detail">${project.detail || ""}</div>
+        </div>
+    `;
+
+        // 2. Middle Media Carousel (70% height)
+        const carousel = document.createElement("div");
+        carousel.className = "project-carousel";
+
+        project.media.forEach((item, index) => {
+            const slide = document.createElement("div");
+            slide.className = `carousel-slide ${index === 0 ? "active" : ""}`;
+
+            if (item.type === "video") {
+                const vid = document.createElement("video");
+                vid.src = item.src;
+                vid.autoplay = true;
+                vid.loop = true;
+                vid.muted = true;
+                vid.playsInline = true;
+                slide.appendChild(vid);
+            } else {
+                const img = document.createElement("img");
+                img.src = item.src;
+                img.alt = item.alt || project.what || "";
+                img.loading = "lazy";
+                slide.appendChild(img);
+            }
+            carousel.appendChild(slide);
+        });
+
+        // Left/Right click zones
+        const leftZone = document.createElement("div");
+        leftZone.className = "carousel-zone zone-left";
+        const rightZone = document.createElement("div");
+        rightZone.className = "carousel-zone zone-right";
+        carousel.appendChild(leftZone);
+        carousel.appendChild(rightZone);
+
+        // 3. Bottom Footer
+        const footer = document.createElement("div");
+        footer.className = "project-footer";
+        footer.innerHTML = `
+        <button type="button" class="project-more-btn" aria-label="Open details for ${project.what}">
+        </button>
+    `;
+
+        // Assemble the card
+        card.appendChild(header);
+        card.appendChild(carousel);
+        card.appendChild(footer);
+
+        // Click event for the row
+        const projectRow = header.querySelector(".project-row");
+        projectRow.addEventListener("click", () => {
+            openProjectModal(project);
+        });
+
+        // Accessibility: Allow opening via 'Enter' or 'Space' key when focused
+        projectRow.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openProjectModal(project);
+            }
+        });
+
+        // Click event for the 'more' button
+        footer.querySelector(".project-more-btn").addEventListener("click", () => {
+            openProjectModal(project);
+        });
+
+        return card;
+    }
+    // 4. Carousel Controller (Auto-timer + Swipe + Edge Clicks)
+    function initCarousel(cardElement, mediaList) {
+        if (!mediaList || mediaList.length <= 1) return;
+
+        const slides = cardElement.querySelectorAll(".carousel-slide");
+        let activeIndex = 0;
+        let timer = null;
+
+        function goToSlide(newIndex) {
+            slides[activeIndex].classList.remove("active");
+            activeIndex = (newIndex + slides.length) % slides.length;
+            slides[activeIndex].classList.add("active");
+        }
+
+        function nextSlide() {
+            goToSlide(activeIndex + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(activeIndex - 1);
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            timer = setInterval(nextSlide, 3500); // changes every 3.5s
+        }
+
+        function stopAutoPlay() {
+            if (timer) clearInterval(timer);
+        }
+
+        startAutoPlay();
+
+        // Edge clicks
+        const leftZone = cardElement.querySelector(".zone-left");
+        const rightZone = cardElement.querySelector(".zone-right");
+
+        leftZone.addEventListener("click", (e) => {
+            e.stopPropagation();
+            prevSlide();
+            startAutoPlay();
+        });
+
+        rightZone.addEventListener("click", (e) => {
+            e.stopPropagation();
+            nextSlide();
+            startAutoPlay();
+        });
+
+        // Touch swipe support (left/right)
+        let touchStartX = 0;
+        const carousel = cardElement.querySelector(".project-carousel");
+
+        carousel.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoPlay();
+        }, { passive: true });
+
+        carousel.addEventListener("touchend", (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchEndX - touchStartX;
+            if (diff > 40) {
+                prevSlide();
+            } else if (diff < -40) {
+                nextSlide();
+            }
+            startAutoPlay();
+        }, { passive: true });
+    }
+
+    // 5. Open Project Modal
+    function openProjectModal(project) {
+        const mediaList = project.media || [];
+        const textList = project.text || [];
+
+        // Helper to generate media HTML (Image or Video)
+        function renderMediaItem(item) {
+            if (!item) return '';
+            if (item.type === 'video') {
+                return `
+                <div class="modal-media-block">
+                    <video src="${item.src}" controls autoplay loop muted playsinline></video>
+                </div>
+            `;
+            }
+            return `
+            <div class="modal-media-block">
+                <img src="${item.src}" alt="${item.alt || ''}">
+            </div>
+        `;
+        }
+
+        // Helper to generate a text block
+        function renderTextBlock(sec) {
+            if (!sec) return '';
+            return `
+            <div class="modal-section">
+                <h2>${sec.title || ''}</h2>
+                <p>${sec.text || ''}</p>
+            </div>
+        `;
+        }
+
+        // 1. Top Header Table (identical to the row structure)
+        const headerHtml = `
+        <div class="modal-header-table">
+            <h1>${project.h1 || 'Project'}</h1>
+            <div class="modal-row">
+                <div class="modal-when">${project.when || ''}</div>
+                <div class="modal-what">${project.what || ''}</div>
+                <div class="modal-detail">${project.detail || ''}</div>
+            </div>
+        </div>
+    `;
+
+        // 2. First image / media item
+        const firstMediaHtml = mediaList.length > 0 ? renderMediaItem(mediaList[0]) : '';
+
+        // 3. Main project description
+        const descHtml = project.description ? `<div class="modal-description">${project.description}</div>` : '';
+
+        // 4. Alternating remaining text blocks and media items
+        // (Text[0] -> Media[1] -> Text[1] -> Media[2] -> ...)
+        let alternatingHtml = '';
+        const remainingMedia = mediaList.slice(1);
+        const maxIterations = Math.max(textList.length, remainingMedia.length);
+
+        for (let i = 0; i < maxIterations; i++) {
+            if (i < textList.length) {
+                alternatingHtml += renderTextBlock(textList[i]);
+            }
+            if (i < remainingMedia.length) {
+                alternatingHtml += renderMediaItem(remainingMedia[i]);
+            }
+        }
+
+        // Inject everything into modal
+        modalBody.innerHTML = `
+        ${headerHtml}
+        ${firstMediaHtml}
+        ${descHtml}
+        <div class="modal-alternating-flow">
+            ${alternatingHtml}
+        </div>
+    `;
+
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden"; // Lock background scroll
+    }
+
+    // Close Modal
+    function closeModal() {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        modalBody.innerHTML = ""; // Free memory
+    }
+
+    modalClose.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeModal();
+        }
     });
 });
 
 
+//test
 
-document.querySelectorAll(".cv-hover-item").forEach((item) => {
-    let pressTimer;
-    let isPressing = false;
-
-    function startPress(event) {
-        if (event.pointerType === "mouse") return;
-
-        pressTimer = setTimeout(() => {
-            isPressing = true;
-            item.classList.add("is-pressing");
-        }, 350);
-    }
-
-    function endPress() {
-        clearTimeout(pressTimer);
-
-        if (isPressing) {
-            item.classList.remove("is-pressing");
-            isPressing = false;
-        }
-    }
-
-    item.addEventListener("pointerdown", startPress);
-    item.addEventListener("pointerup", endPress);
-    item.addEventListener("pointercancel", endPress);
-    item.addEventListener("pointerleave", endPress);
-});
