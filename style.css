@@ -398,7 +398,7 @@ h2 {
 }
 
 .project-modal-close {
-    position: absolute;
+    position: fixed;
     top: 32px;
     right: 60px;
     padding: 0;
