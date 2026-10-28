@@ -31,6 +31,7 @@ body {
         background-color var(--transition),
         color var(--transition);
     min-height: 100vh;
+
 }
 
 a {
@@ -221,6 +222,28 @@ h2 {
     transition: opacity 0.5s ease-out;
 }
 
+.preview-about {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    margin: 0;
+    padding: 60px 60px 64px 60px;
+    background: #111111;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+
+
+}
+
+.preview-about-text {
+    width: 75vw;
+    padding-right: 15vw;
+    font-size: 32px;
+    font-weight: 400;
+    color: #F5F6EE;
+    margin-bottom: 60px;
+}
 
 /* --- WORKS SECTION --- */
 .works {
@@ -246,13 +269,14 @@ h2 {
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 400;
+    margin-bottom: 20px;
 }
 
 .project-row {
     display: grid;
     grid-template-columns: 15% auto auto;
     align-items: baseline;
-    border-bottom: solid 0.5px var(--text);
+    /* border-bottom: solid 0.5px var(--text); */
     cursor: pointer;
     transition: opacity 0.2s ease, color 0.2s ease;
     user-select: none;
@@ -260,7 +284,7 @@ h2 {
 
 .project-row:hover {
     color: var(--accent);
-    border-bottom: 0.5px solid var(--accent);
+    /* border-bottom: 0.5px solid var(--accent); */
 
 }
 
@@ -314,7 +338,7 @@ h2 {
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 3s ease;
+    transition: opacity 1.2s ease;
 }
 
 .carousel-slide.active {
@@ -398,7 +422,7 @@ h2 {
 }
 
 .project-modal-close {
-    position: fixed;
+    position: absolute;
     top: 32px;
     right: 60px;
     padding: 0;
@@ -434,13 +458,15 @@ h2 {
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 400;
+    margin-bottom: 20px;
+
 }
 
 .modal-row {
     display: grid;
     grid-template-columns: 15% auto auto;
     align-items: baseline;
-    border-bottom: 0.5px solid var(--text);
+    /* border-bottom: 0.5px solid var(--text); */
 
 }
 
@@ -476,7 +502,7 @@ h2 {
 /* 3. Description (Styled like .about-text) */
 .modal-description {
     width: 75vw;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 800;
     line-height: 1.25;
     color: var(--text);
@@ -488,18 +514,21 @@ h2 {
 .modal-section {
     align-items: baseline;
     margin: 50px 0;
+
 }
 
 .modal-section h2 {
+    width: 75vw;
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 12px;
+    text-indent: 15%;
 }
 
 .modal-section p {
     width: 75vw;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
     text-indent: 15%;
@@ -526,6 +555,7 @@ h2 {
     color: var(--text);
     margin-bottom: 60px;
 }
+
 
 .about-wrapper {
     padding: 60px 0 0 0;
@@ -700,7 +730,7 @@ h2 {
 }
 
 .footer-top-row h2 {
-    font-size: 114px;
+    font-size: 64px;
     font-weight: 800;
     margin: 0;
     line-height: 1;
@@ -791,6 +821,11 @@ h2 {
         height: auto;
         width: auto;
         object-fit: contain;
+    }
+
+    .preview-about {
+        padding: 18px 24px 40px 24px;
+
     }
 
     /* PROJECT CARDS */
@@ -889,6 +924,10 @@ h2 {
         font-size: 18px;
         text-indent: 20%;
         margin-bottom: 36px;
+    }
+
+    .preview-about-text {
+        font-size: 24px;
     }
 
     .about-wrapper {
@@ -1176,6 +1215,11 @@ h2 {
         line-height: 1.4;
         text-indent: 0;
         margin-bottom: 30px;
+    }
+
+    .preview-about-text {
+        font-size: 24px;
+        line-height: 1.4;
     }
 
     .about-wrapper {
