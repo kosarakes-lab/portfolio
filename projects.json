@@ -16,79 +16,39 @@
                 "type": "video",
                 "src": "videos/screen1.mp4",
                 "alt": "Details of the visual system"
-            }
-        ],
-        "text": [
-            {
-                "title": "starting point",
-                "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
-            }
-        ]
-    },
-    {
-        "id": "02",
-        "h1": "Data visualisation, Infographics",
-        "when": "Oct 2025",
-        "what": "Two centuries of war",
-        "detail": "Corriere della Sera",
-        "description": "This visualization shows how conflicts have involved countries throughout history, from 1816 to 1945. It displays the number of countries where wars occurred or in which they participated, as well as the number of conflicts per year. The graphic distinguishes between interstate wars, wars internal to individual states, and the involvement of countries in the internal conflicts of other states (extra-state conflicts). The data are drawn from the Historical Conflict Dataset.",
-        "media": [
-            {
-                "type": "image",
-                "src": "images/project-02-01.jpg",
-                "alt": "Data visualisation"
-            }
-        ],
-        "text": [
-           {
-                "title": "starting point",
-                "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
-            }
-        ]
-    },
-    {
-        "id": "03",
-        "h1": "Interactive installation",
-        "when": "Jan 2025 - Feb 2026",
-        "what": "Social Museum",
-        "detail": "Collaboration with Diana Yukari, tutored by Studio Calibro",
-        "description": "The Social Museum is a research-led installation exploring how social media shapes the way we experience contemporary art. By analyzing thousands of Instagram images from six major contemporary art museums, the project examines the relationship between genuine engagement and performative behavior in gallery spaces.",
-        "media": [
-            {
-                "type": "video",
-                "src": "videos/project-05.mp4",
-                "alt": "Details of the visual system",
-                "description": "Through an interactive exploration of visitor poses and their positioning in relation to artworks, the installation invites visitors to reflect on their own behavior and question where engagement ends and performance begins."
             },
             {
-                "type": "images",
-                "src": "images/project-05-02.jpg"
-            }
-        ],
-        "text": [
-           {
-                "title": "starting point",
-                "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
-            }
-        ]
-    },
-    {
-        "id": "04",
-        "h1": "Data visualisation, Infographics",
-        "when": "Jun 2025",
-        "what": "Volcanic activity",
-        "detail": "Corriere della Sera",
-        "description": "The visualization displays eruptions over time for each of the 46 volcanoes that were still active in 2025. Each circle represents an eruption, with its start and end points marked on a timeline beginning in 1900. The size of the dots indicates the event's intensity according to the Volcanic Explosivity Index (VEI), while the color highlights whether the eruptions were long-lasting or brief. The elevation and geographic location of each volcano are also indicated.",
-        "media": [
+                "type": "video",
+                "src": "videos/project-01-03.mp4",
+                "alt": "Details of the visual system"
+            },
             {
-                "type": "images",
-                "src": "images/project-04-02.jpg"
+                "type": "image",
+                "src": "images/project-01-03.jpg",
+                "alt": "Details of the visual system"
+            },
+            {
+                "type": "video",
+                "src": "videos/project-01-04.mp4",
+                "alt": "Details of the visual system"
             }
         ],
         "text": [
-           {
-                "title": "starting point",
-                "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
+            {
+                "title": "How news stories travel",
+                "text": "In my master degree research I was observing online media websites and how some of them work in a network, sharing the same news stories, distorting the reality. They made some stories look more important because they existed within multiple media and because of the amount of news they were publishing, other events remained unobserved. Basically, one media was publishing an article and then within a certain distance of time another media was reposting the exact same article, often quoting that it came from a different author. The distance within the publications was not fixed, neither was the chain of which media posts first, second etc. I mapped all the data that I have on a long timeline, observing the circulation within 24 hours. Each news story became a chain, where a green dot was marking the publication and republication of the news story, the distance was marking the distance in time within the republications. It made it possible to observe the quantity of news on a daily basis and within what distance were all news stories amplified. "
+            },
+            {
+                "title": "Interaction with the dataset",
+                "text": "I built an interactive installation which permitted me to explore all identical articles that I have personally collected in the period between November and December 2025. The interface was simple: a timeline that was showing a 24h frame window and two buttons with which to navigate back and forward. I marked some important political events in that period that also reflected the behaviour of these media outlets, such as the series of mass protests and the resignation of the government. I put the option to pause the timeline and see a line chart that was showing the amount of identical news posted daily for the whole period."
+            },
+            {
+                "title": "Understanding of the data",
+                "text": "The interactive timeline that I have built was an abstract view of the dataset. It made it possible to detach from the meaning of the news stories and to observe them in a neutral way, comparing the length of their existence. On a separate screen I put the actual information that each chain from the timeline was carrying: the images, the media website that was re-publishing and the titles behind each story. While navigating the timeline, a person could also observe the visual aspect of these news stories."
+            },
+            {
+                "title": "Is it possible to experience news?",
+                "text": "The final installation became an invitation to discuss the online media today. It is easy to build a website, it is easy to create multiple of them, it is easy to connect them, it is easy to write ‘news’, it is easy and it is also permitted. The installation permitted people to experience what was visible to the audience of these websites, whose faces they were seeing as a preview of the news stories and what reality were these news depicting. It is not only a problem of fake news, disinformation or favourable political coverage, the repetition itself has meaning and I believe that we should open more discussions on this topic. If you have any thought about that, write me a message, I would be very happy to talk with you!"
             }
         ]
     },
@@ -96,7 +56,7 @@
         "id": "05",
         "h1": "MA thesis project",
         "when": "Oct 2025 - Aug 2026",
-        "what": "News Factories (Research)",
+        "what": "News Factories (research)",
         "detail": "Design Academy Eindhoven",
         "description": "Have you ever encountered the exact same news story across multiple websites, sometimes just seconds apart? News Factories investigates the phenomenon of “replication” of news within the Bulgarian online media landscape, exploring what the repetition and circulation of news can reveal about the power structures shaping digital media.",
         "media": [
@@ -132,7 +92,90 @@
             }
         ],
         "text": [
-           {
+            {
+                "title": "From mushroom websites to networks of power",
+                "text": "I was fascinated by a study made from DFRLab that was exploring a great amount of online media outlets with similar, nearly identical interfaces that were appearing and disappearing as domains and each of them was publishing the same exact news but as if it was their material. The study was calling them ‘mushroom websites’ for the way they were behaving and it turned out that they had a centralised platform where people could register to create ‘their own media website’ and receive money if they repost the suggested news. After the research was published this network suddenly disappeared and now some of the previous domains are redirecting you to websites that are selling swimming pools in Burgas. What was interesting to me was the system they created to amplify news stories they wanted and I really wanted to explore more in depth other networks of power. Therefore, I studied the history of media in Bulgaria and I explored the contemporary online environment today."
+            },
+            {
+                "title": "Online news thrive on Facebook",
+                "text": "Online news ends up on social media. Because Facebook is one of the most popular platforms, I started an exploration of the Bulgarian news groups there. It was noticeable that trolls and bots were sharing materials from some websites and that is how I collected the initial nucleus of the dataset. Then I started copy-pasting some of the titles to see if they existed in other platforms too, then I checked the owners of the domains and which other platforms did they own. In this way, I revealed a broader network of media outlets engaged in republishing the same narratives, ultimately resulting in a final corpus of around 20 websites."
+            },
+            {
+                "title": "Analysis and findings",
+                "text": "I built a personal scrapper for each website that allowed me to download all of the news articles from there, keeping the title, the time of publication, the author, the image and the support text. Around 10% of the articles were identical, without a clear pattern of who is sharing news from whom. Some of the publications were made in the exact same moment, others within bigger periods of time. It became a challenge for me as an information designer to visualise their behaviour in one single chart."
+            },
+            {
+                "title": "Conclusions",
+                "text": "The theoretical research explores in detail the different types of networks in Bulgaria that I noticed that are sharing identical content. I explore the content as well and also the political situation in which this is happening. The last chapters are focusing on the media policy and what permits the existence of these websites. If you want to learn more or just simply discuss the topic, do not hesitate and please contact me! "
+            },
+            {
+                "title": "Gratitude",
+                "text": "I am deeply grateful to Design Academy Eindhoven for the opportunity to be part of such an inspiring community. My sincere thanks go to Marco Ferrari, Sofia Topi, and all the professors whose guidance, knowledge, critical perspectives, and encouragement shaped this journey and helped bring this work to life. I am grateful to everyone who shared their time, care, knowledge, criticism, and encouragement with me over these two years. Every contribution, however small, helped shape this work in ways I will carry with me."
+            }
+        ]
+    },
+    {
+        "id": "02",
+        "h1": "Data visualisation, Infographics",
+        "when": "Oct 2025",
+        "what": "Two centuries of war",
+        "detail": "Corriere della Sera",
+        "description": "This visualization shows how conflicts have involved countries throughout history, from 1816 to 1945. It displays the number of countries where wars occurred or in which they participated, as well as the number of conflicts per year. The graphic distinguishes between interstate wars, wars internal to individual states, and the involvement of countries in the internal conflicts of other states (extra-state conflicts). The data are drawn from the Historical Conflict Dataset.",
+        "media": [
+            {
+                "type": "image",
+                "src": "images/project-02-01.jpg",
+                "alt": "Data visualisation"
+            }
+        ],
+        "text": [
+            {
+                "title": "starting point",
+                "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
+            }
+        ]
+    },
+    {
+        "id": "03",
+        "h1": "Interactive installation",
+        "when": "Jan 2025 - Feb 2026",
+        "what": "Social Museum",
+        "detail": "Collaboration with Diana Yukari, tutored by Studio Calibro",
+        "description": "The Social Museum is a research-led installation exploring how social media shapes the way we experience contemporary art. By analyzing thousands of Instagram images from six major contemporary art museums, the project examines the relationship between genuine engagement and performative behavior in gallery spaces.",
+        "media": [
+            {
+                "type": "video",
+                "src": "videos/project-05.mp4",
+                "alt": "Details of the visual system",
+                "description": "Through an interactive exploration of visitor poses and their positioning in relation to artworks, the installation invites visitors to reflect on their own behavior and question where engagement ends and performance begins."
+            },
+            {
+                "type": "images",
+                "src": "images/project-05-02.jpg"
+            }
+        ],
+        "text": [
+            {
+                "title": "starting point",
+                "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
+            }
+        ]
+    },
+    {
+        "id": "04",
+        "h1": "Data visualisation, Infographics",
+        "when": "Jun 2025",
+        "what": "Volcanic activity",
+        "detail": "Corriere della Sera",
+        "description": "The visualization displays eruptions over time for each of the 46 volcanoes that were still active in 2025. Each circle represents an eruption, with its start and end points marked on a timeline beginning in 1900. The size of the dots indicates the event's intensity according to the Volcanic Explosivity Index (VEI), while the color highlights whether the eruptions were long-lasting or brief. The elevation and geographic location of each volcano are also indicated.",
+        "media": [
+            {
+                "type": "images",
+                "src": "images/project-04-02.jpg"
+            }
+        ],
+        "text": [
+            {
                 "title": "starting point",
                 "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
             }
@@ -152,7 +195,7 @@
             }
         ],
         "text": [
-           {
+            {
                 "title": "starting point",
                 "text": "Every project in this webpage contains research and data collection which were valuable. The initial idea, the process and more details will be soon added. Stay tuned!"
             }
