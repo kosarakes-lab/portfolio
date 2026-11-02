@@ -229,7 +229,7 @@ window.CONTENT = {
       year: '2026',
       discipline: 'Motion graphics',
       tags: ['motion-graphics'],
-      cover: 'assets/videos/cards/mood-swings.mp4',
+      cover: 'assets/videos/mood-swings.mp4',
       intro: 'I started doing monthly challenges to improve my data visualisation skills but it turns out also a good way to connect better to myself.',
       blocks: [
         { media: 'assets/videos/mood-swings.mp4', alt: 'Mood swings: a month of moods, animated' },
@@ -301,7 +301,7 @@ window.CONTENT = {
       year: '2025',
       discipline: 'Motion graphics',
       tags: ['motion-graphics'],
-      cover: 'assets/videos/cards/georgescu.mp4',
+      cover: 'assets/videos/georgescu.mp4',
       intro: 'Polls and actual results of the 2024 Romanian presidential elections, animated.',
       blocks: [
         { media: 'assets/videos/georgescu.mp4', alt: 'Who was winning: polls and results of the 2024 Romanian presidential elections' },
@@ -315,7 +315,7 @@ window.CONTENT = {
       year: '2024',
       discipline: 'Motion graphics',
       tags: ['motion-graphics'],
-      cover: 'assets/videos/cards/dataviz-4.mp4',
+      cover: 'assets/videos/dataviz-4.mp4',
       intro: 'According to the World Happiness Index, Bulgarians tend to be happier each year even though they stay in the bottom of the European ranking list.',
       blocks: [
         { media: 'assets/videos/dataviz-4.mp4', alt: 'Happier? The Bulgarian Happiness Index 2015–2024' },
@@ -329,7 +329,7 @@ window.CONTENT = {
       year: '2024',
       discipline: 'Motion graphics',
       tags: ['motion-graphics'],
-      cover: 'assets/videos/cards/dataviz-2.mp4',
+      cover: 'assets/videos/dataviz-2.mp4',
       intro: 'Near 520 Million BGN lost in elections.',
       blocks: [
         { media: 'assets/videos/dataviz-2.mp4', alt: '519 million: the cost of Bulgaria’s parliamentary elections' },
