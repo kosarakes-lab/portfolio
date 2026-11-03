@@ -17,9 +17,10 @@ const isVideo = src => /\.(mp4|webm|mov)$/i.test(src);
 // Videos show a still until they play: assets/posters/<same file name>.jpg, or an explicit `poster`.
 const posterFor = src => 'assets/posters/' + src.split('/').pop().replace(/\.\w+$/, '.jpg');
 
-function media(src, alt, poster, eager) {
+function media(src, alt, poster, eager, sound) {
+  const play = sound ? 'controls' : 'autoplay muted loop';
   return isVideo(src)
-    ? `<video src="${esc(src)}" poster="${esc(poster || posterFor(src))}" autoplay muted loop playsinline preload="metadata" aria-label="${esc(alt || '')}"></video>`
+    ? `<video src="${esc(src)}" poster="${esc(poster || posterFor(src))}" ${play} playsinline preload="metadata" aria-label="${esc(alt || '')}"></video>`
     : `<img src="${esc(src)}" alt="${esc(alt || '')}"${eager ? '' : ' loading="lazy"'}>`;
 }
 
@@ -29,10 +30,13 @@ function body(blocks) {
     if (Array.isArray(b.media)) {
       return `<div class="block-pair">${b.media.map(m => `<figure class="block-media">${media(m, b.alt)}</figure>`).join('')}</div>`;
     }
-    if (b.media) {
-      return `<figure class="block-media">${media(b.media, b.alt, b.poster)}${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>`;
+    if (b.clips) {
+      return `<div class="block-clips">${b.clips.map(c => `<figure>${media(c.media, c.alt)}<figcaption><h2>${esc(c.title)}</h2><p>${esc(c.text)}</p></figcaption></figure>`).join('')}</div>`;
     }
-    if (i > 0 && !blocks[i - 1].media) console.warn(`content.js: "${project.slug}" has two text blocks in a row at #${i}`);
+    if (b.media) {
+      return `<figure class="block-media">${media(b.media, b.alt, b.poster, false, b.sound)}${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>`;
+    }
+    if (i > 0 && !blocks[i - 1].media && !blocks[i - 1].clips) console.warn(`content.js: "${project.slug}" has two text blocks in a row at #${i}`);
     return `<section class="block-text"><h2>${esc(b.title)}</h2><p>${esc(b.text)}</p></section>`;
   }).join('');
 }
@@ -71,7 +75,7 @@ function renderProject() {
       </dl>
       <p class="project-intro">${esc(project.intro)}</p>
     </div>
-    <div class="project-hero" id="projectHero">${media(hero.media, hero.alt, hero.poster, true)}</div>
+    <div class="project-hero" id="projectHero">${media(hero.media, hero.alt, hero.poster, true, hero.sound)}</div>
     <div class="project-body">${body(blocks)}</div>
     ${next !== project ? `
       <a class="next-project" href="${href(`project.html?p=${encodeURIComponent(next.slug)}`)}">

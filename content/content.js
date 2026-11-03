@@ -42,6 +42,8 @@
     .mp4 files show a still image until they load: put a .jpg with the same file name in
     assets/posters/ (e.g. assets/videos/happier.mp4 → assets/posters/happier.jpg),
     or set poster: 'path' on the block.
+    A video with sound: add sound: true. It shows player controls and waits for a click to play.
+    A row of four short videos: { clips: [{ media, alt, title, text }, …] }.
 
   LEGAL
     site.legal fills in the privacy policy and terms pages. Fill in every empty '' before going live.
@@ -126,7 +128,7 @@ window.CONTENT = {
       rows: [
         { when: 'Graphic', where: 'Illustrator, Photoshop, InDesign', what: 'Print and editorial' },
         { when: 'Interface', where: 'Figma', what: 'Layouts and prototypes' },
-        { when: 'Motion', where: 'After Effects', what: 'Animation' },
+        { when: 'Motion', where: 'After Effects, DaVinci Resolve', what: 'Animation and video editing' },
         { when: 'Data', where: 'R Studio, D3.js', what: 'Analysis and charts' },
         { when: 'Web', where: 'HTML, CSS', what: 'Interactive pieces' },
         { when: 'Exploring', where: 'AI-driven workflows', what: 'New creative processes' },
@@ -298,15 +300,30 @@ window.CONTENT = {
     {
       slug: 'who-was-winning',
       title: 'Who was winning*',
-      client: 'Personal challenge',
-      year: '2025',
-      discipline: 'Motion graphics',
+      client: 'Design Academy Eindhoven',
+      year: '2024 – 2025',
+      discipline: 'Motion graphics, video editing, research',
       tags: ['motion-graphics'],
       cover: 'assets/videos/cards/georgescu.mp4',
-      intro: 'Polls and actual results of the 2024 Romanian presidential elections, animated.',
+      intro: '“The TikTok Campaign” is a short video in TikTok format that explores how Călin Georgescu’s presidential campaign used one social media platform to rise from obscurity to the top of the polls. By analysing strategic social media manipulation, the project uncovers the mechanics behind his rapid rise, which led him to win the first round of the elections.',
       blocks: [
+        { media: 'assets/videos/tiktok-campaign.mp4', sound: true, alt: 'The TikTok Campaign: the full video, 2 minutes 40 seconds, with sound' },
+        { title: 'Four main tricks', text: 'The video explains the campaign as four tricks, with the polls and results before them and the votes after them. Below, each section is cut out of the full video. Sources: declassified national security reports, Digital Forensic Research Lab, Expert Forum, TikTok Policy, Mozilla Foundation.' },
         { media: 'assets/videos/georgescu.mp4', alt: 'Who was winning: polls and results of the 2024 Romanian presidential elections' },
         { title: 'What is the data saying?', text: '*The 2024 Romanian presidential elections sparked widespread debate after Călin Georgescu unexpectedly won the first round, driven by an innovative TikTok campaign. His swift rise to prominence raised concerns about the legality of his approach and the validity of the results. This graphic shows the results from the polls in the period between 06/10/2024 and 24/11/2024' },
+        { clips: [
+          { media: 'assets/videos/tiktok-1-audience.mp4', alt: 'Section 1, audience: TikTok accounts and the people behind them', title: '1. Find your audience', text: 'Activate thousands of TikTok accounts just before the elections.' },
+          { media: 'assets/videos/tiktok-2-financing.mp4', alt: 'Section 2, financing: official money spent on the TikTok campaign', title: '2. Don’t pay yourself', text: 'Declare nothing spent on ads, and let others “volunteer” conveniently to boost your content.' },
+          { media: 'assets/videos/tiktok-3-tiktok.mp4', alt: 'Section 3, TikTok: Romanian population compared with TikTok users', title: '3. Go with TikTok', text: 'TikTok doesn’t really enforce its political ad ban.' },
+          { media: 'assets/videos/tiktok-4-hashtags.mp4', alt: 'Section 4, hashtags: a TikTok creator talking about the campaign hashtag', title: '4. Make your audience use hashtags', text: 'Keep it vague, let people fight over its meaning, and watch your influence grow.' },
+        ] },
+        { media: 'assets/videos/tiktok-votes.mp4', alt: 'Votes and TikTok: Georgescu’s votes compared to his TikTok interactions' },
+        { title: 'Votes and TikTok', text: 'The chart compares Georgescu’s votes with his likes, comments and followers on TikTok, up to the first round on 24/11/2024.' },
+        { media: 'assets/images/tiktok-poster.jpg', alt: 'Poster: a timeline of social media platforms and political milestones from 1995 to 2024, with charts of news and usage' },
+        { title: 'Where is the intersection between social media and politics?', text: 'The research started from this poster. Its timeline shows the launch of key social media platforms, marks the ones that evolved into political tools, and highlights the milestones in how social media has shaped political campaigns, discourse and activism.' },
+        { media: 'assets/images/tiktok-cards-table.jpg', alt: 'The printed cards spread out on a table, next to a screen' },
+        { media: 'assets/images/tiktok-cards.jpg', alt: 'Printed cards with a portrait of Georgescu and the words “Vote: winning strategy”, and on the back a QR code and the four tricks' },
+        { title: 'Winning strategy', text: 'A printed card leads to the video with a QR code and lists the four tricks with their timestamps. “Explore the four main tricks, but hurry! Just like Georgescu’s success, it might vanish any moment.”' },
       ],
     },
     {

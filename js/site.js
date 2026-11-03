@@ -101,6 +101,7 @@
       const xb = x.blocks || [];
       if (xb.length !== p.blocks.length) missing.add(`${p.slug}: blocks don’t match (English has ${p.blocks.length}, translation ${xb.length})`);
       p.blocks.forEach((b, i) => {
+        if (b.clips) return b.clips.forEach((c, k) => take(c, xb[i]?.clips?.[k], ['alt', 'title', 'text'], `${p.slug} block ${i + 1} clip ${k + 1}`));
         if (!xb[i]) return;
         if (!!b.media !== !xb[i].title) missing.add(`${p.slug}: block ${i + 1} is ${b.media ? 'media' : 'text'} in English but not in the translation`);
         take(b, xb[i], b.media ? ['alt', 'caption'] : ['title', 'text'], `${p.slug} block ${i + 1}`);
