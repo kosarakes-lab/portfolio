@@ -10,7 +10,7 @@ Values below are read from the Figma layers. Figma has no variables/styles defin
 | `--paper`    | `#f5f6ee` | text on ink, outlines, about-card fill, footer fill, idle filter fill |
 | `--accent`   | `#da70fb` | active filters and nav pills, the filter-count badge, footer "Let's work together!", footer link hover — nothing else |
 
-One grey, for the footer's secondary line only (location, Privacy Policy, Terms of Use, from Figma): `--muted` `#8b8c85` on ink, `--muted-paper` `#6b6c66` on paper (darkened to stay readable). No other colours or tints.
+Secondary text (location, Privacy Policy, Terms of Use): ink at 70% opacity in the paper footer; `--muted` `#8b8c85` in the ink phone menu. No other colours or tints.
 
 ## Type — Inter only
 | role                 | size | weight | case       | line-height |
@@ -48,8 +48,9 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 - Content strip: single horizontal row, 30px gap between cards, vertically centred in its band.
 - Filters: a label "WHAT WOULD YOU LIKE TO EXPLORE?" (14/400 uppercase) ; then the projects row and the about row, 23px apart.
 - Filters label is followed by the count badge: pink circle, ink 14/400 number = how many filters are on. Shown only while some but not all filters are on (none on means everything is shown, so no count). The label row keeps its height either way.
-- Footer (Figma `footer`): 100px bar, `--paper` fill, one line 22px from the bottom: CTA in `--accent` 36/700 (a mailto link), then EMAIL · INSTAGRAM 14/400 uppercase ink, 25px apart; all share one baseline. "Soon based in Sofia · Privacy Policy · Terms of Use" (14/400, `--muted-paper`) sit at the right edge on the same line, and appear only when the footer opens (touch screens, which can't hover, always show them). Below 1100px wide the right group appears above the line instead, at the right edge, when the footer opens.
-- Footer open (Figma `footer` hover frame): on hover or keyboard focus it grows upwards (450ms, slow in/out) until its top edge meets the bottom of the strip, covering the whole filter block (about 250–270px; Figma 242), so the edge never slices through the filter label. The line stays where it is and nothing changes size; the location and legal links fade in at its right end.
+- Footer (Figma `footer`): 100px bar, `--paper` fill, one line 22px from the bottom: CTA in `--accent` 36/700 (a mailto link), then EMAIL · INSTAGRAM 14/400 uppercase ink, 25px apart; at the right edge the language switch EN · BG (· IT), 14/400 uppercase, 14px apart, the current language 700. All share one baseline. The switch is always visible.
+- Location and legal links: "Soon based in Sofia", "Privacy Policy", "Terms of Use" (14/400 ink at 70%), stacked one per line, right-aligned above the switch, 24px above the line. They appear only when the footer opens. Touch screens, which can't hover, show them in the line instead, before the switch.
+- Footer open (Figma `footer` hover frame): on hover or keyboard focus it grows upwards (450ms, slow in/out) until its top edge meets the bottom of the strip, covering the whole filter block (about 250–270px; Figma 242), so the edge never slices through the filter label. The line stays where it is and nothing changes size; the location and legal links fade in above the switch.
 
 ## Project and legal pages (not in Figma, defined here, built on the index tokens)
 - Title: the one extra display size, `clamp(56px, 9vw, 120px)` / 700 / uppercase / line-height 1.08.
@@ -69,7 +70,7 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 - Gutter 20; cards full width, 5px apart, padding 20, inner gap 10; card title 18/700, subtitle 14/300.
 - Every card is the full column width, and every card's media is the full card width: no card or cover is narrower than another. Media keeps its proportions; anything taller than 4:5 is cropped to 4:5.
 - Statement cards 24/700 and as tall as their text. Table rows: year cell on the left spanning two lines, where above what.
-- Menu (Figma `menu` frame): ink sheet under the header, matching the interface, left-aligned. The label "WHAT WOULD YOU LIKE TO EXPLORE?", then PROJECTS (nav pill, paper outline) with the project filters under it, ABOUT (nav pill, paper fill) with the about filters, then the EXPLORE pill (paper) that closes the menu. Then EN. At the bottom, on the same left edge as everything else: CTA 36/700 pink, EMAIL · INSTAGRAM, then Privacy Policy · Terms of Use in `--muted` on one line, then "Soon based in Sofia" in `--muted`.
+- Menu (Figma `menu` frame): ink sheet under the header, matching the interface, left-aligned. The label "WHAT WOULD YOU LIKE TO EXPLORE?", then PROJECTS (nav pill, paper outline) with the project filters under it, ABOUT (nav pill, paper fill) with the about filters, then the EXPLORE pill (paper) that closes the menu. Then the language switch (EN · BG, current in bold). At the bottom, on the same left edge as everything else: CTA 36/700 pink, EMAIL · INSTAGRAM, then Privacy Policy · Terms of Use in `--muted` (they wrap on narrow phones), then "Soon based in Sofia" in `--muted`.
 - Menu pills look and behave exactly as on desktop: project pills paper outline (pink outline + text when on), about pills paper fill (pink fill when on).
 - An "EXPLORE" pill (paper, ink outline, 700 weight, soft drop shadow so it lifts off the cards, fixed bottom centre, always visible while scrolling) opens the menu at the filters; it carries the pink count badge under the same rule as desktop.
 - The page footer is not shown; the footer lives in the menu.
@@ -89,3 +90,7 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 
 ## Project page media
 - Videos are never cropped: they show full width at their own proportions, in the hero, alone and in pairs. Only still images in a pair are cropped to 4:5.
+
+## Languages
+- English is the original, at the top level; each other language lives in its own folder (`/bg/`, later `/it/`) with the same pages. Every page links to its other language versions (hreflang), and links inside a language stay in it.
+- The switch is in the footer on desktop and in the menu on phones. Layouts must hold with Bulgarian text, which runs about 10–20% longer than English.

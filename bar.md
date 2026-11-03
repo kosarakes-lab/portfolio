@@ -6,8 +6,8 @@ Every line is checkable by looking at a render.
 
 1. **Three colours, accent used for two roles only.** Only ink `#060606`, paper `#f5f6ee`, pink `#da70fb` appear.
    Pink appears only on active filter/nav pills, the filter-count badge and the footer CTA (and footer links
-   while hovered). Any other pink on screen is a fail. The one grey is the footer's secondary line (location
-   and legal links), from Figma.
+   while hovered). Any other pink on screen is a fail. The footer's secondary line (location and legal links)
+   is ink at 70%, grey in the phone menu.
 
 2. **Three type sizes on the index, 36 ≈ 2.6× 14.** Labels 14, card titles 18, display 36. A fourth size, or
    a display line that doesn't dominate the about card, fails. The footer CTA stays 36 when the footer opens.

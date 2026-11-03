@@ -116,13 +116,14 @@ Add the card's `id` (for example `'about:languages'`) to `strip` to show it, and
 
 At the top of `content.js`, in `site`:
 
-- `email`, `instagram`: used in the footer and menu. `location` ("Soon based in Sofia") sits in the footer next to the legal links.
+- `email`, `instagram`: used in the footer and menu. `location` ("Soon based in Sofia") appears with the legal links when the footer opens.
+- `languages`: the language switch, e.g. `['en', 'bg']`. See section 7.
 - `legal`: fills in the privacy policy and terms:
   - `address`: a postal address for legal contact.
   - `host`: the company hosting the site, e.g. `'Netlify, Inc., San Francisco, USA'`.
   - `hostPrivacy`: link to the host's privacy policy.
   - `country`: the law that applies and your data-protection authority (`'Bulgaria'` or `'Netherlands'`).
-  - `updated`: change the date whenever you edit the legal pages.
+  - `updated`: the date of your last change to the legal pages, written year-month-day (`'2026-11-02'`). Each language shows it in its own way.
 
 Fill all of these in before the site goes live. The legal pages flag empty fields on your computer.
 
@@ -130,7 +131,24 @@ If you ever add analytics, a contact form, embedded YouTube/Vimeo or Google Font
 
 ---
 
-## 7. Put the site online
+## 7. Languages (English, Bulgarian, and later Italian)
+
+English is the original: `content/content.js`. Bulgarian text lives in **`content/content.bg.js`**, and the Bulgarian pages are at `/bg/` (for example `kosarakeskinova.com/bg/project.html?p=nepravda`). The EN · BG switch is in the footer, and in the menu on phones.
+
+- **Change a Bulgarian text:** edit it in `content.bg.js`. Projects are matched by their slug, about cards by their id, and the blocks of a project follow the English blocks **in the same order**: a picture gets `{ alt: '…' }`, a text gets `{ title: '…', text: '…' }`.
+- **Interface words** (buttons, labels) are in `ui` at the top of `content.bg.js`: the English wording on the left, Bulgarian on the right.
+- **Your name** on the Bulgarian pages (top bar, page titles, legal pages) is `site.name` in `content.bg.js`. Remove that line to show it in Latin letters, as in English.
+- **After you add or change a project in English:** anything not yet translated is shown in English on the Bulgarian page, and the corner box on your computer lists exactly what's missing. Translate those lines, or ask Claude to.
+- **If you move, add or remove a block** in an English project, do the same in `content.bg.js`, so the order still matches. The corner box tells you if it doesn't.
+- Use Bulgarian quotation marks „…“ and avoid the straight apostrophe ' inside the text; it ends the line early.
+
+**Adding Italian later:** add `'it'` to `languages` in `content.js`, create `content/content.it.js` (a copy of the Bulgarian file, translated), then in Terminal run `python3 tools/make-language-pages.py`, which makes the `/it/` pages. The switch shows IT automatically.
+
+**If you ever change an `.html` file** (you normally won't), run `python3 tools/make-language-pages.py` again so the Bulgarian pages match.
+
+---
+
+## 8. Put the site online
 
 The site is plain files, with no build step. Any static host works. The simplest:
 
@@ -141,7 +159,7 @@ To update the live site later, upload the folder again (or push the changes, if 
 
 Before going live, check:
 
-- [ ] All `// CHECK` lines in `content.js` are confirmed or fixed.
+- [ ] All `// CHECK` lines in `content.js` and `content.bg.js` are confirmed or fixed.
 - [ ] No project shows "Placeholder" text (or it's marked `draft: true`).
 - [ ] `site.legal` is filled in; the legal pages show no corner box.
 - [ ] Every video has a poster in `assets/posters/`.

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <base href="../">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-t>Kosara Keskinova — Information designer</title>
+  <meta name="description" data-t-content content="Kosara Keskinova is an information designer doing data visualisation, motion, editorial and interactive design.">
+  <meta name="theme-color" content="#060606">
+  <meta property="og:type" content="website">
+  <meta property="og:title" data-t-content content="Kosara Keskinova — Information designer">
+  <meta property="og:description" data-t-content content="Data visualisation, motion, editorial and interactive design.">
+  <meta property="og:image" content="assets/images/project-01-01.jpg">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home">
+  <a class="skip-link" href="#strip" data-t>Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <a class="site-name" href="bg/index.html">Kosara Keskinova</a>
+    <nav class="nav" aria-label="Main" data-t-label>
+      <button class="nav-pill" type="button" data-view="projects" aria-pressed="false"><span data-t>projects</span></button>
+      <button class="nav-pill" type="button" data-view="about" aria-pressed="false"><span data-t>about</span></button>
+    </nav>
+  </header>
+
+  <main class="strip" id="strip" aria-label="Projects and about" tabindex="-1">
+    <div class="strip-inner" id="stripInner"></div>
+  </main>
+
+  <section class="filters" id="filters" aria-labelledby="filtersLabel">
+    <div class="filters-head">
+      <h2 class="filters-label" id="filtersLabel" data-t>What would you like to explore?</h2>
+      <span class="explore-count" aria-hidden="true" hidden></span>
+      <p class="sr-only" id="filtersStatus" aria-live="polite"></p>
+    </div>
+    <div class="filter-row" data-group="projects" role="group" aria-label="Projects" data-t-label></div>
+    <div class="filter-row" data-group="about" role="group" aria-label="About" data-t-label></div>
+  </section>
+
+  <footer class="site-footer" id="siteFooter"></footer>
+
+  <script src="content/content.js"></script>
+  <script src="content/content.bg.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

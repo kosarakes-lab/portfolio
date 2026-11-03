@@ -1,6 +1,7 @@
 // Project page: Datalands-style case study, built from content/content.js.
 
 const C = window.CONTENT;
+const { t, href } = window.I18N;
 const root = document.getElementById('project');
 const slug = new URLSearchParams(location.search).get('p');
 
@@ -37,16 +38,16 @@ function body(blocks) {
 }
 
 function renderNotFound() {
-  document.title = 'Not found — Kosara Keskinova';
+  document.title = `${t('Not found')} — ${C.site.name}`;
   console.warn(`content.js: no project with slug "${slug}"`);
   root.innerHTML = `
     <div class="project-head">
-      <h1 class="project-title">Not found</h1>
-      <p class="project-intro">There is no project called “${esc(slug || '')}”.</p>
+      <h1 class="project-title">${t('Not found')}</h1>
+      <p class="project-intro">${t('There is no project called')} “${esc(slug || '')}”.</p>
     </div>
-    <a class="next-project" href="index.html">
-      <span class="card-label">back to</span>
-      <span class="next-title">All projects →</span>
+    <a class="next-project" href="${href('index.html')}">
+      <span class="card-label">${t('back to')}</span>
+      <span class="next-title">${t('All projects')} →</span>
     </a>`;
 }
 
@@ -57,24 +58,24 @@ function renderProject() {
   const hero = heroFirst ? first : { media: project.cover, alt: project.title };
   const blocks = heroFirst ? rest : project.blocks;
 
-  document.title = `${project.title} — Kosara Keskinova`;
+  document.title = `${project.title} — ${C.site.name}`;
   document.getElementById('crumbTitle').textContent = project.title;
 
   root.innerHTML = `
     <div class="project-head">
       <h1 class="project-title">${esc(project.title)}</h1>
       <dl class="project-meta">
-        <div><dt>year</dt><dd class="pill">${esc(project.year)}</dd></div>
-        <div><dt>client</dt><dd class="pill">${esc(project.client)}</dd></div>
-        <div><dt>discipline</dt><dd class="pill">${esc(project.discipline)}</dd></div>
+        <div><dt>${t('year')}</dt><dd class="pill">${esc(project.year)}</dd></div>
+        <div><dt>${t('client')}</dt><dd class="pill">${esc(project.client)}</dd></div>
+        <div><dt>${t('discipline')}</dt><dd class="pill">${esc(project.discipline)}</dd></div>
       </dl>
       <p class="project-intro">${esc(project.intro)}</p>
     </div>
     <div class="project-hero" id="projectHero">${media(hero.media, hero.alt, hero.poster, true)}</div>
     <div class="project-body">${body(blocks)}</div>
     ${next !== project ? `
-      <a class="next-project" href="project.html?p=${encodeURIComponent(next.slug)}">
-        <span class="card-label">next project</span>
+      <a class="next-project" href="${href(`project.html?p=${encodeURIComponent(next.slug)}`)}">
+        <span class="card-label">${t('next project')}</span>
         <span class="next-title">${esc(next.title)}&nbsp;→</span>
       </a>` : ''}
   `;

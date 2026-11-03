@@ -1,0 +1,6 @@
+# Working files that stay on this computer
+.DS_Store
+.history/
+.loop/
+.claude/
+tools/

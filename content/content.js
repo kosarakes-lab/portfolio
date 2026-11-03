@@ -59,9 +59,10 @@ window.CONTENT = {
     name: 'Kosara Keskinova',
     email: 'hello@kosarakeskinova.com',
     instagram: 'https://www.instagram.com/kosara_keskinova/',
-    location: 'Soon based in Sofia',   // shown in the footer, next to the legal links
+    location: 'Soon based in Sofia',   // shown in the footer, with the legal links
+    languages: ['en', 'bg'],           // the language switch, in this order. English is the original; see EDITING.md
     legal: {
-      updated: '2 November 2026',          // date shown on the legal pages; change it when you edit them
+      updated: '2026-11-02',               // date shown on the legal pages (year-month-day); change it when you edit them
       address: 'Sofia, Bulgaria',          // postal address for legal contact, e.g. 'Street 1, 1000 Sofia, Bulgaria'
       host: 'Spaceship, Inc. (USA)',       // who hosts the site
       hostPrivacy: 'https://www.spaceship.com/legal/privacy-policy/', // link to the host's privacy policy
@@ -196,7 +197,7 @@ window.CONTENT = {
         { title: 'Interaction with the dataset', text: 'I built an interactive installation which permitted me to explore all identical articles that I have personally collected in the period between November and December 2025. The interface was simple: a timeline that was showing a 24h frame window and two buttons with which to navigate back and forward. I marked some important political events in that period that also reflected the behaviour of these media outlets, such as the series of mass protests and the resignation of the government. I put the option to pause the timeline and see a line chart that was showing the amount of identical news posted daily for the whole period.' },
         { media: 'assets/images/project-01-01.jpg', alt: 'The News Factories installation' },
         { title: 'Understanding of the data', text: 'The interactive timeline that I have built was an abstract view of the dataset. It made it possible to detach from the meaning of the news stories and to observe them in a neutral way, comparing the length of their existence. On a separate screen I put the actual information that each chain from the timeline was carrying: the images, the media website that was re-publishing and the titles behind each story. While navigating the timeline, a person could also observe the visual aspect of these news stories.' },
-        { media: 'assets/videos/project-01-03.mp4', alt: 'The installation in the exhibition hall: the news screen on its wooden wall, beside the timeline console' },
+        { media: 'assets/videos/news-factories-loop.mp4', alt: 'The installation’s start screen: the title, the console and how to use it, over the faces from the news' },
         { title: 'Is it possible to experience news?', text: 'The final installation became an invitation to discuss the online media today. It is easy to build a website, it is easy to create multiple of them, it is easy to connect them, it is easy to write ‘news’, it is easy and it is also permitted. The installation permitted people to experience what was visible to the audience of these websites, whose faces they were seeing as a preview of the news stories and what reality were these news depicting. It is not only a problem of fake news, disinformation or favourable political coverage, the repetition itself has meaning and I believe that we should open more discussions on this topic. If you have any thought about that, write me a message, I would be very happy to talk with you!' },
       ],
     },

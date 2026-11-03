@@ -3,8 +3,7 @@
   --ink: #060606;
   --paper: #f5f6ee;
   --accent: #da70fb;
-  --muted: #8b8c85;        /* secondary footer text on ink (Figma: legal links) */
-  --muted-paper: #6b6c66;  /* the same grey, darkened to stay readable on paper */
+  --muted: #8b8c85;        /* secondary text on ink (phone menu: legal links, location) */
 
   --gutter: 100px;
   --header-h: 70px;
@@ -273,15 +272,14 @@ img, video { display: block; max-width: 100%; }
   color: var(--ink);
   transition: height var(--t-filter) var(--ease-move);
 }
-/* One line, anchored to the bottom so it stays put while the bar grows.
-   Narrow screens wrap the legal links onto a second line. */
+/* One line, anchored to the bottom so it stays put while the bar grows:
+   headline and contact on the left, the language switch on the right. */
 .footer-main {
   position: absolute;
   left: var(--gutter); right: var(--gutter); bottom: 22px;
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
-  gap: 8px 20px;
+  gap: 20px;
 }
 .cta {
   color: var(--accent);
@@ -290,28 +288,37 @@ img, video { display: block; max-width: 100%; }
   line-height: 1.08;
   white-space: nowrap;
 }
-.footer-links, .footer-legal { display: flex; gap: 25px; white-space: nowrap; }
-.footer-links { text-transform: uppercase; }
+.footer-links { display: flex; gap: 25px; white-space: nowrap; text-transform: uppercase; }
+
+/* Language switch: EN BG IT, the current one in bold. Always visible. */
+.lang-switch { margin-left: auto; display: flex; gap: 14px; text-transform: uppercase; }
+.lang-switch a[aria-current] { font-weight: 700; }
+
+/* Location and legal links: stacked above the switch, aligned right, at 70% (30% transparent).
+   Hidden until the footer opens. */
 .footer-legal {
-  margin-left: auto; color: var(--muted-paper);
+  position: absolute; right: 0; bottom: calc(100% + 24px);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  white-space: nowrap;
   opacity: 0; visibility: hidden;
   transition: opacity 200ms linear, visibility 0s 200ms;
 }
-.footer-links a, .footer-legal a { transition: color 150ms; }
+.footer-links a, .footer-legal a, .lang-switch a { transition: color 150ms; }
 @media (hover: hover) {
-  .footer-links a:hover, .footer-legal a:hover { color: var(--accent); }
+  .footer-links a:hover, .footer-legal a:hover, .lang-switch a:hover { color: var(--accent); }
 }
 
-/* Open: on hover, or while a link inside has keyboard focus. The location and legal links appear. */
+/* Open: on hover, or while a link inside has keyboard focus. */
 .site-footer:focus-within .footer-panel { height: var(--footer-open); }
-.site-footer:focus-within .footer-legal { opacity: 1; visibility: visible; transition-delay: 150ms, 0s; }
+.site-footer:focus-within .footer-legal { opacity: .7; visibility: visible; transition-delay: 150ms, 0s; }
 @media (hover: hover) {
   .site-footer:hover .footer-panel { height: var(--footer-open); }
-  .site-footer:hover .footer-legal { opacity: 1; visibility: visible; transition-delay: 150ms, 0s; }
+  .site-footer:hover .footer-legal { opacity: .7; visibility: visible; transition-delay: 150ms, 0s; }
 }
-/* Touch screens can't hover: the legal links stay in the bar so they can always be reached. */
+/* Touch screens can't hover: the legal links sit in the line, before the switch, so they can always be reached. */
 @media (hover: none) {
-  .footer-legal { opacity: 1; visibility: visible; }
+  .site-footer .footer-legal { position: static; order: 1; margin-left: auto; flex-direction: row; gap: 25px; opacity: .7; visibility: visible; }
+  .site-footer .lang-switch { order: 2; margin-left: 0; }
 }
 
 /* ---------- Content notice (only while editing locally, see js/site.js) ---------- */
@@ -448,9 +455,6 @@ img, video { display: block; max-width: 100%; }
 /* ---------- Tablet (800–1099px) ---------- */
 @media (max-width: 1099px) {
   :root { --gutter: 40px; }
-  /* Too narrow for one line: the location and legal links appear above it when the footer opens,
-     so the closed bar keeps its single line at the bottom. */
-  .footer-legal { position: absolute; right: 0; bottom: calc(100% + 24px); }
 }
 
 /* ---------- Phone and small tablet (< 800px): vertical list, name + hamburger ---------- */
@@ -535,10 +539,11 @@ img, video { display: block; max-width: 100%; }
     .menu .explore-pill:hover { background: transparent; color: var(--paper); border-color: var(--paper); }
   }
 
-  .menu-lang { text-transform: uppercase; margin-top: auto; }
+  .menu-lang { margin-top: auto; }
+  .menu .lang-switch { margin: 0; gap: 20px; }
   .menu-footer { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
   .menu-footer .cta { font-size: 36px; white-space: normal; }
-  .menu-footer .footer-legal { margin: 0; color: var(--muted); opacity: 1; visibility: visible; }
+  .menu-footer .footer-legal { position: static; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 10px 25px; margin: 0; color: var(--muted); opacity: 1; visibility: visible; }
   .menu-location { color: var(--muted); }
 
   /* Project and legal pages */

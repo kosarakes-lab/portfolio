@@ -4,6 +4,8 @@
 // Content comes from content/content.js (window.CONTENT).
 
 const C = window.CONTENT;
+const { t, href } = window.I18N;
+const fmt = (s, v) => t(s).replace(/\{(\w+)\}/g, (_, k) => v[k]);
 const strip = document.getElementById('strip');
 const inner = document.getElementById('stripInner');
 const filterRows = [...document.querySelectorAll('.filter-row[data-group]')];
@@ -56,7 +58,7 @@ function cardHtml(item, copy) {
   const d = item.data;
   if (item.kind === 'project') {
     return `
-      <a class="card card-project" data-key="${item.key}" href="project.html?p=${encodeURIComponent(d.slug)}"${tab}
+      <a class="card card-project" data-key="${item.key}" href="${href(`project.html?p=${encodeURIComponent(d.slug)}`)}"${tab}
          style="--ratio:${ratios[item.key] || 16 / 9};--ratio-col:${Math.max(ratios[item.key] || 16 / 9, 0.8)}">
         <div class="card-body">
           <div class="card-media">${coverHtml(d, hidden)}</div>
@@ -78,7 +80,7 @@ function cardHtml(item, copy) {
   }
   // Rows card: a small table, one rounded block like a spreadsheet: a header row, then one row per
   // entry split by hairlines; the first column is filled in ink like a spreadsheet's row headers.
-  const [h1, h2, h3] = d.columns || ['When', 'Where', 'What'];
+  const [h1, h2, h3] = d.columns || [t('When'), t('Where'), t('What')];
   return `
     <section class="card card-about card-rows" data-key="${item.key}">
       <div class="card-body">
@@ -246,14 +248,14 @@ function setActive(next, animate = true) {
   }
 
   const shown = items.filter(isVisible).length;
-  statusEl.textContent = active.size ? `Showing ${shown} of ${items.length}` : `Showing all ${items.length}`;
+  statusEl.textContent = active.size ? fmt('Showing {shown} of {total}', { shown, total: items.length }) : fmt('Showing all {total}', { total: items.length });
   // Number of filters on, shown only while some (not all) are on: none on means everything is shown.
   const total = groupIds.projects.length + groupIds.about.length;
   const partial = active.size > 0 && active.size < total;
   document.querySelectorAll('.explore-count').forEach(el => { el.textContent = String(active.size); el.hidden = !partial; });
   document.querySelectorAll('.explore-pill').forEach(el => el.setAttribute('aria-label', partial
-    ? `Explore: ${active.size} ${active.size === 1 ? 'filter' : 'filters'} on, ${shown} ${shown === 1 ? 'result' : 'results'}`
-    : 'Explore: all filters'));
+    ? fmt('Explore. Filters on: {on}. Results: {shown}.', { on: active.size, shown })
+    : t('Explore: all filters')));
 
   applyVisibility(animate);
 }
@@ -443,7 +445,7 @@ async function boot() {
 
   // Phones: a pill at the bottom of the screen opens the filters in the menu.
   document.body.insertAdjacentHTML('beforeend',
-    `<button class="explore-pill explore-button" type="button" aria-controls="menu">explore <span class="explore-count" hidden></span></button>`);
+    `<button class="explore-pill explore-button" type="button" aria-controls="menu">${t('explore')} <span class="explore-count" hidden></span></button>`);
   document.querySelector('.explore-button').addEventListener('click', () => window.SITE?.scrollMenuTo('.menu-filters'));
 
   const view = new URLSearchParams(location.search).get('view');
