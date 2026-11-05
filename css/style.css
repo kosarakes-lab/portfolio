@@ -85,7 +85,7 @@ img, video { display: block; max-width: 100%; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 20px;
+  gap: 10px 3px;   /* the filters sit right beside the projects button */
 }
 .nav { display: flex; align-items: center; gap: 3px; flex: none; }
 /* Let's talk: the same text style as the name, then a pink circle with an arrow. */
@@ -132,7 +132,7 @@ img, video { display: block; max-width: 100%; }
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   cursor: grab;
   touch-action: pan-y;
   user-select: none;
@@ -206,7 +206,21 @@ img, video { display: block; max-width: 100%; }
 .card-sub { font-weight: 300; text-transform: capitalize; }
 
 /* About card: solid */
-.card-about { background: var(--paper); color: var(--ink); }
+.card-about { position: relative; background: var(--paper); color: var(--ink); }
+.card-about .card-body { position: relative; }
+/* The spiky star in the card's empty space, cut off by its bottom edge.
+   Sized and moved with the scrolling in js/home.js. */
+.card-shape {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  will-change: transform;
+  max-width: none;
+  fill: var(--accent);
+  color: var(--accent);
+  opacity: .1;
+  pointer-events: none;
+}
 .card-label { text-transform: uppercase; }
 .card-statement { font-size: var(--display); font-weight: 700; }
 
@@ -462,6 +476,7 @@ img, video { display: block; max-width: 100%; }
      except very tall ones, which are cropped to 4:5. */
   .card-media { height: auto; width: 100% !important; aspect-ratio: var(--ratio-col); }
   .card-about .card-body { gap: 5px; }
+  .card-shape { display: none; }
   .card-statement { font-size: var(--display) !important; }
 
   .card-rows .card-body { gap: 10px; }

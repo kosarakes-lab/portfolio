@@ -49,6 +49,14 @@ function coverHtml(d, hidden) {
   return `<img src="${esc(d.cover)}" alt="${hidden ? '' : esc(d.title)}" draggable="false"${pos}>`;
 }
 
+// The spiky star in the empty part of every about card. It turns and travels with the scrolling (see moveShapes).
+const STAR_POINTS = Array.from({ length: 22 }, (_, i) => {
+  const r = i % 2 ? 27 : 46;
+  const a = -Math.PI / 2 + i * Math.PI / 11;
+  return `${(50 + r * Math.cos(a)).toFixed(1)},${(50 + r * Math.sin(a)).toFixed(1)}`;
+}).join(' ');
+const shapeHtml = () => `<svg class="card-shape" viewBox="0 0 100 100" aria-hidden="true"><polygon points="${STAR_POINTS}" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/></svg>`;
+
 function cardHtml(item, copy) {
   const hidden = copy !== 1;
   const tab = hidden ? ' tabindex="-1"' : '';
@@ -69,6 +77,7 @@ function cardHtml(item, copy) {
   if (item.kind === 'statement') {
     return `
       <section class="card card-about" data-key="${item.key}">
+        ${shapeHtml()}
         <div class="card-body">
           <h2 class="card-label">${esc(d.label)}</h2>
           <p class="card-statement">${esc(d.statement)}</p>
@@ -80,6 +89,7 @@ function cardHtml(item, copy) {
   const [h1, h2, h3] = d.columns || [t('When'), t('Where'), t('What')];
   return `
     <section class="card card-about card-rows" data-key="${item.key}">
+      ${shapeHtml()}
       <div class="card-body">
         <h2 class="card-label">${esc(d.label)}</h2>
         <div class="cv-table" role="table" aria-label="${esc(d.label)}">
@@ -143,6 +153,7 @@ function clearSizes() {
   }
   inner.querySelectorAll('.card-statement').forEach(el => { el.style.fontSize = ''; });
   inner.querySelectorAll('.card-rows').forEach(el => { el.style.removeProperty('--row-pad'); });
+  inner.querySelectorAll('.card-shape').forEach(el => { el.removeAttribute('style'); });
 }
 
 function probeOf(sample, item, width) {
@@ -168,7 +179,8 @@ function reserveBar() {
 function measure() {
   reserveBar();
   const stripH = strip.clientHeight;
-  const cardH = Math.max(320, Math.min(500, stripH - 12));
+  // Cards fill the height between the buttons and the footer, leaving 24px above the footer.
+  const cardH = Math.max(320, stripH - 24);
   document.documentElement.style.setProperty('--card-h', cardH + 'px');
 
   const pad = css('--card-pad');
@@ -222,6 +234,21 @@ function measure() {
     probe.remove();
     for (const el of inner.querySelectorAll(`[data-key="${CSS.escape(item.key)}"]`)) {
       if (pad < 19) el.style.setProperty('--row-pad', pad + 'px'); else el.style.removeProperty('--row-pad');
+    }
+  }
+
+  // The star fills the free space under the text: as wide as the card at most, its top just below
+  // the text (28px, also while it turns), its bottom cut off by the card's edge. With little free space there is no star.
+  for (const item of items.filter(i => i.kind !== 'project')) {
+    const probe = probeOf(sample, item, widths[item.key] + 'px');
+    const content = probe.querySelector('.card-body').lastElementChild.getBoundingClientRect().bottom - probe.getBoundingClientRect().top;
+    probe.remove();
+    const visible = cardH - content - 28;
+    const size = Math.min(visible / 0.6, widths[item.key]);
+    for (const el of inner.querySelectorAll(`[data-key="${CSS.escape(item.key)}"] .card-shape`)) {
+      el.style.display = visible < 70 ? 'none' : '';
+      el.style.width = el.style.height = size + 'px';
+      el.style.bottom = Math.min(visible - size, -size * 0.15) + 'px';
     }
   }
 
@@ -292,6 +319,23 @@ function render() {
   const x = loop ? mod(current, W) : 0;
   inner.style.transform = `translate3d(${css('--gutter') - (W + x)}px,0,0)`;
   strip.classList.toggle('at-start', x === 0);
+  moveShapes();
+}
+
+// While the strip scrolls, each star turns and crosses its card: on the card's right side
+// as the card comes in at the right of the screen, on its left side as it leaves at the left.
+const STAR_TURN = 0.2;   // degrees per pixel scrolled
+let turned = 0;          // scrolling before the last filter change, so the stars don't jump when it resets
+function moveShapes() {
+  if (reducedMotion.matches) return;
+  const screen = strip.clientWidth;
+  inner.querySelectorAll('.card-shape').forEach((el, i) => {
+    const card = el.parentElement.getBoundingClientRect();
+    if (!card.width || card.right < 0 || card.left > screen) return;
+    const across = Math.max(0, Math.min(1, (card.left + card.width / 2) / screen));
+    const travel = Math.max(0, card.width - el.clientWidth * 0.6);
+    el.style.transform = `translateX(calc(-50% + ${((across - 0.5) * travel).toFixed(1)}px)) rotate(${((turned + current) * STAR_TURN + (i % 6) * 37).toFixed(1)}deg)`;
+  });
 }
 
 function tick() {
@@ -331,11 +375,12 @@ function applyVisibility(animate) {
   if (animate) {
     inner.style.transition = `transform var(--t-filter) var(--ease-move)`;
     clearTimeout(applyVisibility.t);
-    applyVisibility.t = setTimeout(() => { inner.style.transition = ''; }, css('--t-filter') + 60);
+    applyVisibility.t = setTimeout(() => { inner.style.transition = ''; moveShapes(); }, css('--t-filter') + 60);
   }
   W = newW;
   loop = newLoop;
   strip.classList.toggle('no-loop', !loop);
+  turned += current;
   target = current = 0;
   render();
 }

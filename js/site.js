@@ -168,8 +168,8 @@
       </div>`;
 
     header.insertAdjacentHTML('beforeend', `
-      <a class="talk-link" href="mailto:${esc(S.email)}" aria-label="${t('Let’s talk')}">
-        <span class="talk-text">${t('Let’s talk')}</span>
+      <a class="talk-link" href="mailto:${esc(S.email)}" aria-label="${t('Let’s talk!')}">
+        <span class="talk-text">${t('Let’s talk!')}</span>
         <span class="talk-arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 6h10M6.5 1.5 11 6l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="${t('Open menu')}">
@@ -180,8 +180,8 @@
       <div class="menu" id="menu" hidden>
         <section class="menu-filters" aria-labelledby="menuFiltersLabel">
           <h2 class="filters-label" id="menuFiltersLabel">${t(isHome ? 'What would you like to explore?' : 'Explore')}</h2>
-          ${group('projects')}
           ${group('about')}
+          ${group('projects')}
         </section>
         <div class="menu-footer">
           ${langSwitch()}

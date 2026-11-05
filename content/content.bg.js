@@ -37,7 +37,7 @@ window.TRANSLATIONS.bg = {
     'explore': 'разгледайте',
     'Open menu': 'Отваряне на менюто',
     'Close menu': 'Затваряне на менюто',
-    'Let’s talk': 'Да поговорим',
+    'Let’s talk!': 'Да поговорим!',
 
     // footer
     'email': 'имейл',

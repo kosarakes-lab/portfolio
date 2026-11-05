@@ -24,8 +24,8 @@ Secondary text (location, Privacy Policy, Terms of Use): ink at 70% opacity in t
 Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer opens. Project page may add one display size for the title.
 
 ## Shape
-- Cards: radius 15, padding 25, height 500, inner gap 20.
-- Card media: radius 15, height ~379, width follows the image's aspect ratio.
+- Cards: radius 15, padding 25, inner gap 20. On screens ≥ 800px their height fills the space between the nav bar and the footer, leaving 24px above the footer.
+- Card media: radius 15, height is the card height minus 121, width follows the image's aspect ratio (at most 3% cropped when a very wide image reaches the screen's width).
 - Pills (filters): radius 20, padding 10, gap 3 between pills.
 - Nav pills (projects / about): radius 15, padding 10.
 - Outlines: 1px `--paper` on ink, 1px `--ink` on paper.
@@ -34,6 +34,8 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 - **Project card** = hollow: `--ink` fill, 1px `--paper` outline, paper text.
 - **About card** = solid: `--paper` fill, ink text, no outline.
 - Every about card has the same label: 14/400 uppercase, top-left. No numbering.
+- About cards on screens ≥ 800px carry the same 11-point spiky star in `--accent` at 10% opacity, sized to fill the free space under the text: as wide as the card at most, its top 28px below the text, its bottom cut off by the card's edge. A card with under 70px to spare has none. Never on phones.
+- While the strip scrolls, the star turns (0.2° per pixel) and crosses its card, from the right side as the card enters at the right of the screen to the left side as it leaves. With reduced motion turned on it stays still in the centre.
 - **Table card** (education, experience, awards, exhibitions, skills), from the calendar and table-of-contents references:
   the label, then the table 20px under it (the card's own gap), so any spare space falls below the table. Owner's decision: short tables (Education, Awards) keep their natural row height and leave the spare cream below them; rows never stretch to fill the card.
   The table is one block like a spreadsheet: radius 15, 1px ink outline, rows and columns split by 1px ink hairlines.
@@ -45,8 +47,8 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 - Left gutter 100px (40px between 800 and 1099px) for header name, nav bar, strip start and footer. Right gutter the same for "Let's talk" and the language switch.
 - The strip runs to both screen edges, with no fade or mask. At rest after load or filtering, the first card sits on the gutter line, in line with the filters, and nothing shows in the gutter. After a scroll or swipe, the strip settles with a card edge on the gutter line.
 - Header 70px tall, items centred vertically, space-between: the name on the left, "Let's talk" on the right (a mailto link for now): the same text style as the name, then a 24px pink circle with an ink arrow; the text turns pink on hover.
-- Nav bar under the name, on every page: PROJECTS and ABOUT. On the home page, clicking PROJECTS shows only the projects and opens the project filters beside the pills; clicking ABOUT shows only the about cards and has no filters. Clicking the active pill again returns to everything mixed, which is also how the page loads. The bar keeps its height with the filters closed, so the cards never resize.
-- Content strip: single horizontal row, 30px gap between cards, vertically centred in its band.
+- Nav bar under the name, on every page: ABOUT, then PROJECTS. On the home page, clicking PROJECTS shows only the projects and opens the project filters right beside it (3px apart); clicking ABOUT shows only the about cards and has no filters. Clicking the active pill again returns to everything mixed, which is also how the page loads. The bar keeps its height with the filters closed, so the cards never resize.
+- Content strip: single horizontal row, 30px gap between cards, directly under the nav bar.
 - Footer: 40px bar, `--accent` fill, ink text, no hover effect or animation. EMAIL · INSTAGRAM (14/700 uppercase, 25px apart) on the left; Privacy Policy · Terms of Use at 20% opacity in the exact middle; the language switch EN · BG (· IT) on the right (14px apart, the current language 700).
 
 ## Project and legal pages (not in Figma, defined here, built on the index tokens)
@@ -67,7 +69,7 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 - Gutter 20; cards full width, 5px apart, padding 20, inner gap 10; card title 18/700, subtitle 14/300.
 - Every card is the full column width, and every card's media is the full card width: no card or cover is narrower than another. Media keeps its proportions; anything taller than 4:5 is cropped to 4:5.
 - Statement cards 24/700 and as tall as their text. Table rows: year cell on the left spanning two lines, where above what.
-- Menu (Figma `menu` frame): ink sheet under the header, matching the interface, left-aligned. The label "WHAT WOULD YOU LIKE TO EXPLORE?", then PROJECTS (nav pill, paper outline), with the project filters opening under it when it is on, ABOUT (nav pill; choosing it closes the menu). The X closes the menu otherwise. At the bottom, edge to edge, a pink block with ink text, stacked on the left: the language switch (EN · BG, current in bold), EMAIL · INSTAGRAM (700), then Privacy Policy · Terms of Use at 20% opacity (they wrap on narrow phones).
+- Menu (Figma `menu` frame): ink sheet under the header, matching the interface, left-aligned. The label "WHAT WOULD YOU LIKE TO EXPLORE?", then ABOUT (nav pill; choosing it closes the menu), then PROJECTS (nav pill), with the project filters opening under it when it is on. The X closes the menu otherwise. At the bottom, edge to edge, a pink block with ink text, stacked on the left: the language switch (EN · BG, current in bold), EMAIL · INSTAGRAM (700), then Privacy Policy · Terms of Use at 20% opacity (they wrap on narrow phones).
 - Menu pills look and behave exactly as on desktop. There is no "Let's talk" or "Explore" button on phones.
 - The pink footer closes the page with the same stack as the menu's pink block.
 - Project pages on phone: one column; the meta pairs wrap side by side in a row (20px gaps) instead of stacking, so the lead stays near the top.
