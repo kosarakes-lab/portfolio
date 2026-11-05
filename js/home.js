@@ -1,4 +1,5 @@
-// Home: project + about cards filtered by two rows of pills.
+// Home: project + about cards. All are mixed at first; "projects" shows only the projects and opens
+// their filters, "about" shows only the about cards, and clicking the same button again mixes them back.
 //  ≥ 800px  one horizontal strip that loops; the wheel, a drag or the arrow keys move it sideways.
 //  < 800px  a vertical list that scrolls with the page; filters live in the menu.
 // Content comes from content/content.js (window.CONTENT).
@@ -28,11 +29,7 @@ const items = C.strip.map(key => {
 
 // Only filters that match at least one card get a pill, so a filter can never empty the strip.
 const usedTags = new Set(items.flatMap(i => i.tags));
-const groups = {
-  projects: C.filters.projects.filter(f => usedTags.has(f.id)),
-  about: C.filters.about.filter(f => usedTags.has(f.id)),
-};
-const groupIds = { projects: groups.projects.map(f => f.id), about: groups.about.map(f => f.id) };
+const groups = { projects: C.filters.projects.filter(f => usedTags.has(f.id)) };
 
 const COPIES = 3;           // copy 1 is the "real" one; 0 and 2 make the loop seamless
 const ratios = {};          // cover aspect ratios by project slug
@@ -156,7 +153,20 @@ function probeOf(sample, item, width) {
   return probe;
 }
 
+// The bar keeps the height it needs with the filters open (they can wrap on narrow windows),
+// so opening them never resizes the cards.
+function reserveBar() {
+  const bar = document.getElementById('pageBar');
+  const row = bar.querySelector('.filter-row');
+  const wasHidden = row.hidden;
+  bar.style.minHeight = '';
+  row.hidden = false;
+  bar.style.minHeight = bar.offsetHeight + 'px';
+  row.hidden = wasHidden;
+}
+
 function measure() {
+  reserveBar();
   const stripH = strip.clientHeight;
   const cardH = Math.max(320, Math.min(500, stripH - 12));
   document.documentElement.style.setProperty('--card-h', cardH + 'px');
@@ -215,11 +225,6 @@ function measure() {
     }
   }
 
-  // The open footer covers the whole filter block, so its edge never cuts through a line of text.
-  const filtersEl = document.getElementById('filters');
-  // (The cards are centred in the strip, so it also covers the strip's few pixels below them.)
-  document.documentElement.style.setProperty('--footer-open', filtersEl.offsetHeight + css('--footer-h') + Math.floor((stripH - cardH) / 2) + 'px');
-
   for (const el of inner.querySelectorAll('.card')) {
     el.style.width = widths[el.dataset.key] + 'px';
     const media = el.querySelector('.card-media');
@@ -227,49 +232,44 @@ function measure() {
   }
 }
 
-// ---------- Filter state ----------
-// Empty set = nothing selected = everything shown (the page is never empty).
+// ---------- View and filter state ----------
+// view: null = everything mixed, 'projects' or 'about' = only those cards.
+// picked: the project filters that are on. None on = all projects (the page is never empty).
 
-let active = new Set();
+let view = null;
+const picked = new Set();
 
 function isVisible(item) {
-  return active.size === 0 || item.tags.some(t => active.has(t));
+  if (!view) return true;
+  if (view === 'about') return item.kind !== 'project';
+  return item.kind === 'project' && (picked.size === 0 || item.tags.some(t => picked.has(t)));
 }
 
-function setActive(next, animate = true) {
-  active = next;
+function syncState(animate = true) {
   for (const b of document.querySelectorAll('.filter')) {
-    b.setAttribute('aria-pressed', String(active.has(b.dataset.id)));
+    b.setAttribute('aria-pressed', String(picked.has(b.dataset.id)));
   }
-  // A nav pill is on exactly when its whole group is on and nothing else is.
-  const only = ids => ids.length > 0 && active.size === ids.length && ids.every(id => active.has(id));
   for (const p of document.querySelectorAll('[data-view]')) {
-    p.setAttribute('aria-pressed', String(only(groupIds[p.dataset.view])));
+    p.setAttribute('aria-pressed', String(view === p.dataset.view));
   }
+  // The project filters are open only in the projects view.
+  filterRows.forEach(row => { row.hidden = view !== 'projects'; });
 
   const shown = items.filter(isVisible).length;
-  statusEl.textContent = active.size ? fmt('Showing {shown} of {total}', { shown, total: items.length }) : fmt('Showing all {total}', { total: items.length });
-  // Number of filters on, shown only while some (not all) are on: none on means everything is shown.
-  const total = groupIds.projects.length + groupIds.about.length;
-  const partial = active.size > 0 && active.size < total;
-  document.querySelectorAll('.explore-count').forEach(el => { el.textContent = String(active.size); el.hidden = !partial; });
-  document.querySelectorAll('.explore-pill').forEach(el => el.setAttribute('aria-label', partial
-    ? fmt('Explore. Filters on: {on}. Results: {shown}.', { on: active.size, shown })
-    : t('Explore: all filters')));
+  statusEl.textContent = view ? fmt('Showing {shown} of {total}', { shown, total: items.length }) : fmt('Showing all {total}', { total: items.length });
 
   applyVisibility(animate);
 }
 
 function toggleFilter(id) {
-  const next = active.size === 0 ? new Set([id]) : new Set(active);
-  if (active.size !== 0) next.has(id) ? next.delete(id) : next.add(id);
-  setActive(next);
+  picked.has(id) ? picked.delete(id) : picked.add(id);
+  syncState();
 }
 
-function selectView(view) {
-  const ids = groupIds[view];
-  const already = active.size === ids.length && ids.every(id => active.has(id));
-  setActive(already ? new Set() : new Set(ids));
+function selectView(next, animate = true) {
+  view = view === next ? null : next;
+  picked.clear();
+  syncState(animate);
 }
 
 // ---------- Strip motion (horizontal mode) ----------
@@ -443,25 +443,21 @@ async function boot() {
   watchVideos();
   relayout();
 
-  // Phones: a pill at the bottom of the screen opens the filters in the menu.
-  document.body.insertAdjacentHTML('beforeend',
-    `<button class="explore-pill explore-button" type="button" aria-controls="menu">${t('explore')} <span class="explore-count" hidden></span></button>`);
-  document.querySelector('.explore-button').addEventListener('click', () => window.SITE?.scrollMenuTo('.menu-filters'));
-
-  const view = new URLSearchParams(location.search).get('view');
-  setActive(view === 'about' || view === 'projects' ? new Set(groupIds[view]) : new Set(), false);
+  const startView = new URLSearchParams(location.search).get('view');
+  if (startView === 'about' || startView === 'projects') selectView(startView, false);
+  else syncState(false);
   strip.classList.add('is-ready');
 
   document.addEventListener('click', e => {
     const f = e.target.closest('.filter');
-    if (f) return toggleFilter(f.dataset.id);
     const v = e.target.closest('button[data-view]');
-    if (v) {
-      selectView(v.dataset.view);
-      if (v.closest('.menu')) window.SITE?.closeMenu();
-      return;
-    }
-    if (e.target.closest('.menu-show')) { window.SITE?.closeMenu(); window.scrollTo({ top: 0 }); }
+    if (!f && !v) return;
+    if (f) toggleFilter(f.dataset.id);
+    else selectView(v.dataset.view);
+    // Phones: the list starts from the top after a change. In the menu, "projects" stays
+    // open so its filters can be used (the X closes it); "about" has nothing more to choose.
+    if (column.matches) window.scrollTo({ top: 0 });
+    if (v?.closest('.menu') && view !== 'projects') window.SITE?.closeMenu();
   });
 
   window.addEventListener('wheel', onWheel, { passive: false });

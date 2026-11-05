@@ -37,9 +37,9 @@ window.TRANSLATIONS.bg = {
     'explore': 'разгледайте',
     'Open menu': 'Отваряне на менюто',
     'Close menu': 'Затваряне на менюто',
+    'Let’s talk': 'Да поговорим',
 
     // footer
-    'Let’s work together!': 'Нека работим заедно!',
     'email': 'имейл',
     'Privacy Policy': 'Политика за поверителност',
     'Terms of Use': 'Условия за ползване',
@@ -68,8 +68,6 @@ window.TRANSLATIONS.bg = {
     'Legal': 'Правна информация',
     'Showing {shown} of {total}': 'Показани: {shown} от {total}',
     'Showing all {total}': 'Показани са всички {total}',
-    'Explore. Filters on: {on}. Results: {shown}.': 'Разгледайте. Включени филтри: {on}. Резултати: {shown}.',
-    'Explore: all filters': 'Разгледайте: всички филтри',
     'When': 'Кога',
     'Where': 'Къде',
     'What': 'Какво',

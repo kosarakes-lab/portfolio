@@ -144,24 +144,18 @@
     <nav class="lang-switch" aria-label="${t('Language')}">${languages.map(l =>
       `<a href="${esc(pageIn(l))}" lang="${l}" hreflang="${l}" title="${NAMES[l]}"${l === LANG ? ' aria-current="true"' : ''}>${l}</a>`).join('')}</nav>`;
 
-  // Footer (Figma: footer + its hover frame): one line in a paper bar: headline and contact on
-  // the left, the language switch on the right. On hover or keyboard focus the bar grows upwards
-  // over the filters; the location and legal links then appear above the switch, one per line.
+  // Footer: one pink line with no hover effect: contact on the left, legal links and the language switch on the right.
   const footer = document.getElementById('siteFooter');
   if (footer) {
     footer.innerHTML = `
-      <div class="footer-panel">
-        <div class="footer-main">
-          <a class="cta" href="mailto:${esc(S.email)}">${t('Let’s work together!')}</a>
-          <nav class="footer-links" aria-label="${t('Contact')}">${contactLinks}</nav>
-          ${langSwitch()}
-          <nav class="footer-legal" aria-label="${t('Legal')}">${S.location ? `<span>${esc(S.location)}</span>` : ''}${legalLinks}</nav>
-        </div>
-      </div>`;
+      <nav class="footer-links" aria-label="${t('Contact')}">${contactLinks}</nav>
+      <nav class="footer-legal" aria-label="${t('Legal')}">${legalLinks}</nav>
+      ${langSwitch()}`;
   }
 
-  // Phone/tablet menu (< 800px, Figma: menu frame): name + hamburger; the menu holds
-  // the filters under their projects/about pill (home), the language switch and the footer.
+  // Top bar: the name, then "Let's talk" (for now it opens an email) or, under 800px, the hamburger.
+  // The phone/tablet menu holds the projects/about pills (with the project filters under
+  // projects, on the home page) and, in a pink block, the language switch, contact and legal links.
   const header = document.getElementById('siteHeader');
   if (header) {
     const pill = view => isHome
@@ -170,10 +164,14 @@
     const group = view => `
       <div class="menu-group">
         ${pill(view)}
-        ${isHome ? `<div class="filter-row" data-group="${view}" role="group" aria-label="${t(view)}"></div>` : ''}
+        ${isHome && view === 'projects' ? `<div class="filter-row" data-group="${view}" role="group" aria-label="${t(view)}" hidden></div>` : ''}
       </div>`;
 
     header.insertAdjacentHTML('beforeend', `
+      <a class="talk-link" href="mailto:${esc(S.email)}" aria-label="${t('Let’s talk')}">
+        <span class="talk-text">${t('Let’s talk')}</span>
+        <span class="talk-arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 6h10M6.5 1.5 11 6l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="${t('Open menu')}">
         <svg class="icon-open" width="40" height="8" viewBox="0 0 40 8" aria-hidden="true"><path d="M0 .5h40M0 7.5h40" stroke="currentColor"/></svg>
         <svg class="icon-close" width="35" height="21" viewBox="0 0 35.05 20.82" aria-hidden="true"><path d="M.25.43l34.55 19.95M.25 20.38L34.8.43" stroke="currentColor"/></svg>
@@ -184,14 +182,11 @@
           <h2 class="filters-label" id="menuFiltersLabel">${t(isHome ? 'What would you like to explore?' : 'Explore')}</h2>
           ${group('projects')}
           ${group('about')}
-          ${isHome ? `<button class="explore-pill menu-show" type="button">${t('explore')} <span class="explore-count" hidden></span></button>` : ''}
         </section>
-        <div class="menu-lang">${langSwitch() || `<span lang="${LANG}">${LANG}</span>`}</div>
         <div class="menu-footer">
-          <a class="cta" href="mailto:${esc(S.email)}">${t('Let’s work together!')}</a>
+          ${langSwitch()}
           <nav class="footer-links" aria-label="${t('Contact')}">${contactLinks}</nav>
           <nav class="footer-legal" aria-label="${t('Legal')}">${legalLinks}</nav>
-          ${S.location ? `<p class="menu-location">${esc(S.location)}</p>` : ''}
         </div>
       </div>`);
 
@@ -210,7 +205,6 @@
     window.SITE = {
       openMenu: () => setMenu(true),
       closeMenu: () => setMenu(false),
-      scrollMenuTo: sel => { setMenu(true); menu.querySelector(sel)?.scrollIntoView({ block: 'start' }); },
     };
   }
 

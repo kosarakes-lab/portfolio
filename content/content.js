@@ -61,7 +61,7 @@ window.CONTENT = {
     name: 'Kosara Keskinova',
     email: 'hello@kosarakeskinova.com',
     instagram: 'https://www.instagram.com/kosara_keskinova/',
-    location: 'Soon based in Sofia',   // shown in the footer, with the legal links
+    location: 'Soon based in Sofia',   // not shown at the moment: the footer has only the links and the language switch
     languages: ['en', 'bg'],           // the language switch, in this order. English is the original; see EDITING.md
     legal: {
       updated: '2026-11-02',               // date shown on the legal pages (year-month-day); change it when you edit them

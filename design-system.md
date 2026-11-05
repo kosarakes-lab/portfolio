@@ -42,15 +42,12 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
   On phone the table has two columns: the first column spans each entry's two lines, and the header reads e.g. "SCHOOL / DEGREE".
 
 ## Layout (≥ 800px)
-- Left gutter 100px (40px between 800 and 1099px) for header name, strip start, filters and footer CTA. Right gutter the same for the nav.
+- Left gutter 100px (40px between 800 and 1099px) for header name, nav bar, strip start and footer. Right gutter the same for "Let's talk" and the language switch.
 - The strip runs to both screen edges, with no fade or mask. At rest after load or filtering, the first card sits on the gutter line, in line with the filters, and nothing shows in the gutter. After a scroll or swipe, the strip settles with a card edge on the gutter line.
-- Header 70px tall, items centred vertically, space-between.
+- Header 70px tall, items centred vertically, space-between: the name on the left, "Let's talk" on the right (a mailto link for now): the same text style as the name, then a 24px pink circle with an ink arrow; the text turns pink on hover.
+- Nav bar under the name, on every page: PROJECTS and ABOUT. On the home page, clicking PROJECTS shows only the projects and opens the project filters beside the pills; clicking ABOUT shows only the about cards and has no filters. Clicking the active pill again returns to everything mixed, which is also how the page loads. The bar keeps its height with the filters closed, so the cards never resize.
 - Content strip: single horizontal row, 30px gap between cards, vertically centred in its band.
-- Filters: a label "WHAT WOULD YOU LIKE TO EXPLORE?" (14/400 uppercase) ; then the projects row and the about row, 23px apart.
-- Filters label is followed by the count badge: pink circle, ink 14/400 number = how many filters are on. Shown only while some but not all filters are on (none on means everything is shown, so no count). The label row keeps its height either way.
-- Footer (Figma `footer`): 100px bar, `--paper` fill, one line 22px from the bottom: CTA in `--accent` 36/700 (a mailto link), then EMAIL · INSTAGRAM 14/400 uppercase ink, 25px apart; at the right edge the language switch EN · BG (· IT), 14/400 uppercase, 14px apart, the current language 700. All share one baseline. The switch is always visible.
-- Location and legal links: "Soon based in Sofia", "Privacy Policy", "Terms of Use" (14/400 ink at 70%), stacked one per line, right-aligned above the switch, 24px above the line. They appear only when the footer opens. Touch screens, which can't hover, show them in the line instead, before the switch.
-- Footer open (Figma `footer` hover frame): on hover or keyboard focus it grows upwards (450ms, slow in/out) until its top edge meets the bottom of the strip, covering the whole filter block (about 250–270px; Figma 242), so the edge never slices through the filter label. The line stays where it is and nothing changes size; the location and legal links fade in above the switch.
+- Footer: 40px bar, `--accent` fill, ink text, no hover effect or animation. EMAIL · INSTAGRAM (14/700 uppercase, 25px apart) on the left; Privacy Policy · Terms of Use at 20% opacity in the exact middle; the language switch EN · BG (· IT) on the right (14px apart, the current language 700).
 
 ## Project and legal pages (not in Figma, defined here, built on the index tokens)
 - Title: the one extra display size, `clamp(56px, 9vw, 120px)` / 700 / uppercase / line-height 1.08.
@@ -70,18 +67,15 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 - Gutter 20; cards full width, 5px apart, padding 20, inner gap 10; card title 18/700, subtitle 14/300.
 - Every card is the full column width, and every card's media is the full card width: no card or cover is narrower than another. Media keeps its proportions; anything taller than 4:5 is cropped to 4:5.
 - Statement cards 24/700 and as tall as their text. Table rows: year cell on the left spanning two lines, where above what.
-- Menu (Figma `menu` frame): ink sheet under the header, matching the interface, left-aligned. The label "WHAT WOULD YOU LIKE TO EXPLORE?", then PROJECTS (nav pill, paper outline) with the project filters under it, ABOUT (nav pill, paper fill) with the about filters, then the EXPLORE pill (paper) that closes the menu. Then the language switch (EN · BG, current in bold). At the bottom, on the same left edge as everything else: CTA 36/700 pink, EMAIL · INSTAGRAM, then Privacy Policy · Terms of Use in `--muted` (they wrap on narrow phones), then "Soon based in Sofia" in `--muted`.
-- Menu pills look and behave exactly as on desktop: project pills paper outline (pink outline + text when on), about pills paper fill (pink fill when on).
-- An "EXPLORE" pill (paper, ink outline, 700 weight, soft drop shadow so it lifts off the cards, fixed bottom centre, always visible while scrolling) opens the menu at the filters; it carries the pink count badge under the same rule as desktop.
-- The page footer is not shown; the footer lives in the menu.
+- Menu (Figma `menu` frame): ink sheet under the header, matching the interface, left-aligned. The label "WHAT WOULD YOU LIKE TO EXPLORE?", then PROJECTS (nav pill, paper outline), with the project filters opening under it when it is on, ABOUT (nav pill; choosing it closes the menu). The X closes the menu otherwise. At the bottom, edge to edge, a pink block with ink text, stacked on the left: the language switch (EN · BG, current in bold), EMAIL · INSTAGRAM (700), then Privacy Policy · Terms of Use at 20% opacity (they wrap on narrow phones).
+- Menu pills look and behave exactly as on desktop. There is no "Let's talk" or "Explore" button on phones.
+- The pink footer closes the page with the same stack as the menu's pink block.
 - Project pages on phone: one column; the meta pairs wrap side by side in a row (20px gaps) instead of stacking, so the lead stays near the top.
 
 ## Interactive states
-- Filter idle: projects row = 1px paper outline, paper text; about row = paper fill, ink text.
-- Filter **active** (Figma `projects` and `about` frames): projects row = pink outline and pink text, no fill; about row = pink fill, ink text.
-- Nav pills wear the style of their row: PROJECTS idle = paper outline, active = pink outline and text; ABOUT idle = paper fill, active = pink fill.
-- Nav pill is active exactly when every filter of its group is on and no other filter is on.
-- Hover never underlines. Idle pills swap fill and outline (outline pill fills, filled pill empties), never turning pink; links turn pink; project-card media zooms 1.03 (600ms); next-project card fills paper; the footer opens.
+- Filter idle: 1px paper outline, paper text. **Active**: pink outline and pink text, no fill. No filter on means all projects.
+- PROJECTS and ABOUT are bold and identical: idle = paper outline and text, active = pink outline and text. A nav pill is active while its view is showing.
+- Hover never underlines. Idle pills fill with paper, never turning pink; the name and "Let's talk" text turn pink; project-card media zooms 1.03 (600ms); next-project card fills paper; the footer does nothing.
 - Keyboard focus: 2px paper outline (ink on paper surfaces). Never pink.
 - Motion-graphics cards play their video silently on a loop while on screen and pause off screen. With reduced motion turned on they show the poster.
 
@@ -93,4 +87,4 @@ Three sizes on the index: 14 / 18 / 36. The footer CTA stays 36 when the footer 
 
 ## Languages
 - English is the original, at the top level; each other language lives in its own folder (`/bg/`, later `/it/`) with the same pages. Every page links to its other language versions (hreflang), and links inside a language stay in it.
-- The switch is in the footer on desktop and in the menu on phones. Layouts must hold with Bulgarian text, which runs about 10–20% longer than English.
+- The switch is in the footer on every screen, and also in the menu on phones. Layouts must hold with Bulgarian text, which runs about 10–20% longer than English.
